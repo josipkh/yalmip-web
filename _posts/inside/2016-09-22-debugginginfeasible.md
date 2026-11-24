@@ -22,7 +22,7 @@ sol = optimize(Constraints,Objective)
 
 Where to start...
 
-Before asking a question on the YALMIP [forum](/https://groups.google.com/forum/#!forum/yalmip), make sure you've at least covered the first four tips here.
+Before asking a question on the YALMIP [forum](https://groups.google.com/forum/#!forum/yalmip), make sure you've at least covered the first four tips here.
 
 ### 1. Absolutely most common mistake
 

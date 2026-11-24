@@ -8,7 +8,7 @@ sidebar:
   nav: "tutorials"
 ---
 
-The following example requires [MOSEK](/solver/mosek) or [GPPOSY](/solver/gpposy), or any nonlinear solver such as [FMINCON](/solver/fmincon), [SNOPT](/solver/snopt) or [IPOPT](/solver/ipopt). The solvers [GPPOSY](/solver/gpposy) is a dedicated geometric programming solvers but slightly outdated. With [MOSEK](/solver/mosek), YALMIP automatically rewrites the problem to an [exponential cone program]((tutorial/exponentialcone). With a general nonlinear solver, it is possible tell YLMIP to rewrite the geometri program to its convex form.
+The following example requires [MOSEK](/solver/mosek) or [GPPOSY](/solver/gpposy), or any nonlinear solver such as [FMINCON](/solver/fmincon), [SNOPT](/solver/snopt) or [IPOPT](/solver/ipopt). The solvers [GPPOSY](/solver/gpposy) is a dedicated geometric programming solvers but slightly outdated. With [MOSEK](/solver/mosek), YALMIP automatically rewrites the problem to an [exponential cone program](/tutorial/exponentialcone). With a general nonlinear solver, it is possible tell YLMIP to rewrite the geometri program to its convex form.
 
 
 ## Posynomial forms

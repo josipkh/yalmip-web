@@ -80,7 +80,7 @@ sdpvar x
 y = [zeros(1,4) x];
 ````
 
-Alternatively, define **x** as an [sdpvar](/command/sdpvar) vector and insert zeros, or use the sparse function, etc. A last resort (as it is ugly nonstandard MATLAB code) is to use [double2sdpvar](/command/double2sdp). This command most likely will be removed in the future so do not rely on it.
+Alternatively, define **x** as an [sdpvar](/command/sdpvar) vector and insert zeros, or use the sparse function, etc. A last resort (as it is ugly nonstandard MATLAB code) is to use double2sdpvar. This command most likely will be removed in the future so do not rely on it.
 
 ````matlab
 sdpvar x

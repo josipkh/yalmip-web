@@ -54,13 +54,13 @@ for k = 1:10
 end 
 ````
 
-In the [plot](/command/plot) command, we use 200 rays to increase the likelihood of not missing any vertices during ray-shooting. In other words, the code above solves 2000 linear programs to plot the sequence of ball approximations, so you better have an efficient solver installed (code takes around 10-15 seconds with a quality [linear programming solver](/allsolvers) installed).
+In the plot command, we use 200 rays to increase the likelihood of not missing any vertices during ray-shooting. In other words, the code above solves 2000 linear programs to plot the sequence of ball approximations, so you better have an efficient solver installed (code takes around 10-15 seconds with a quality [linear programming solver](/allsolvers) installed).
 
 ![Approximated ball]({{ site.url }}/images/approximationball1.png){: .center-image }
 
 ### Optimizer to the rescue
 
-In a first step to use the [recent additions to YALMIP optimizer objects](/optimizerupdates), we use partially instantiated  [optimizer](/command/optimizer) objects. We want to generate a bunch of constraints with different \\(v\\) but the same \\(x\\). Hence, we create a model which is parameterized in \\(v\\), and then instantiate objects where \\(v\\) is fixed to different values, and concatenate these. Conveniently, [plot](/command/plot) is overloaded on [optimizer](/command/optimizer) objects and simply plots the feasible set in any remaining decision- or parametric variables. Note that the uninstantiated model is bilinear in the variables, hence it is crucial to specify a solver which is applicable once the parameters have been fixed. Also note the use of the flag **'nosolve'** which stops the optimizer object from solving the instantiated model
+In a first step to use the [recent additions to YALMIP optimizer objects](/optimizerupdates), we use partially instantiated  [optimizer](/command/optimizer) objects. We want to generate a bunch of constraints with different \\(v\\) but the same \\(x\\). Hence, we create a model which is parameterized in \\(v\\), and then instantiate objects where \\(v\\) is fixed to different values, and concatenate these. Conveniently, plot is overloaded on [optimizer](/command/optimizer) objects and simply plots the feasible set in any remaining decision- or parametric variables. Note that the uninstantiated model is bilinear in the variables, hence it is crucial to specify a solver which is applicable once the parameters have been fixed. Also note the use of the flag **'nosolve'** which stops the optimizer object from solving the instantiated model
 
 ````matlab
 x = sdpvar(2,1);

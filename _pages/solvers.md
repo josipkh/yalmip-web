@@ -25,7 +25,7 @@ And finally, there are no free lunches and you get what you pay for (unless you'
 A simple categorization is as follows (the definitions of free and commercial depends slightly on the solver, please see the specific comments in the solver description)
 
 ### Linear programming (free)
-[CDD](/solver/cdd), [CLP](/solver/clp), [GLPK](/solver/glpk), [LPSOLVE](/solver/lpsolve), [QSOPT](/solver/qsopt), [SCIP](/solver/scip)
+[CDD](/solver/cdd), CLP, [GLPK](/solver/glpk), [LPSOLVE](/solver/lpsolve), [QSOPT](/solver/qsopt), [SCIP](/solver/scip)
 
 ### Mixed Integer Linear programming (free)
 [CBC](/solver/cbc), [GLPK](/solver/glpk), [LPSOLVE](/solver/lpsolve), [SCIP](/solver/scip)
@@ -37,7 +37,7 @@ A simple categorization is as follows (the definitions of free and commercial de
 [COPT](/solver/copt) (free for academia), [CPLEX](/solver/cplex) (free for academia), [GUROBI](/solver/gurobi) (free for academia), [INTLINPROG](/solver/intlinprog), [KNITRO](/solver/knitro), [MOSEK](/solver/mosek) (free for academia), [XPRESS](/solver/xpress) (free for academia)
 
 ### Quadratic programming (free)
-[OSQP](/solver/osqp), [CLP](/solver/clp), [DAQP](/solver/daqp) (mixed-binary), [OOQP](/solver/ooqp), [QPC](/solver/qpc), [QPOASES](/solver/qpoases), [QUADPROGBB](/solver/quadprogbb) (nonconvex QP)
+[OSQP](/solver/osqp), CLP, [DAQP](/solver/daqp) (mixed-binary), [OOQP](/solver/ooqp), [QPC](/solver/qpc), [QPOASES](/solver/qpoases), [QUADPROGBB](/solver/quadprogbb) (nonconvex QP)
 
 ### Quadratic programming (commercial)
 [COPT](/solver/copt) (free for academia), [CPLEX](/solver/cplex) (free for academia), [GUROBI](/solver/gurobi) (free for academia), [KNITRO](/solver/knitro), [MOSEK](/solver/mosek) (free for academia), [QUADPROG](/solver/quadprog), [XPRESS](/solver/xpress) (free for academia)
