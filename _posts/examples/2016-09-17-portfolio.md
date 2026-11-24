@@ -1,6 +1,5 @@
 ---
 category: example
-category: example
 excerpt: "Markowitz classical portfoilos and beyond via integer programming."
 title: Portfolio optimization
 tags: [Portfolio optimization, Finance, Quadratic programming, Integer programming, Cardinality, Multi-parametric programming, Optimizer]

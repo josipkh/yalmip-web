@@ -1,4 +1,5 @@
 ---
+title: warmstart
 category: command
 excerpt: "Assign numerical values to decision variable"
 tags: [Warm-start,Initial,Options, Assign]

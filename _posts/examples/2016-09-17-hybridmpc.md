@@ -6,8 +6,6 @@ tags: [Control, MPC, Integer programming, Avoidance constraints]
 date: '2016-09-16'
 sidebar:
   nav: "examples"
-header:
-  teaser:
 ---
 
 In the [standard MPC example](/example/standardmpc), we illustrated some alternative approaches to setup and solve MPC problems in YALMIP. We will now use approximately the same code to solve hybrid MPC problems, i.e., problems involving piecewise affine and hybrid models.

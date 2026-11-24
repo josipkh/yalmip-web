@@ -14,8 +14,6 @@ image:
   feature: pwaqp.png
   teaser: pwaqp.png
   thumb: pwaqp.png
-sidebar:
-  nav: "examples"
 ---
 
 To showcase the generality and convenience of [interp1](/command/interp1), let us answer a common question which addresses the problem of solving (possibly mixed-integer) quadratic programs using linear solvers, and to make matters worse, we study indefinite quadratic objectives.

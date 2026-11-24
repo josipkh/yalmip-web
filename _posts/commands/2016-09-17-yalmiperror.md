@@ -18,7 +18,7 @@ string = yalmiperror(n)
 
 ## Examples
 To se all available error codes, simply issue the command without any input.
-````matlabb
+````matlab
 yalmiperror
 
   Error codes
@@ -52,7 +52,7 @@ yalmiperror
 ````
 
 To retrieve a description of a particular error code
-````matlabb
+````matlab
 yalmiperror(3)
  ans =
  Maximum iterations exceeded

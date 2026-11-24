@@ -20,17 +20,17 @@ yalmiptest(ops)
 
 ## Examples
 Run the command without any input to test the default installation.
-````matlabb
+````matlab
 yalmiptest
 ````
 
 
 To test a solver, provide a tag.
-````matlabb
+````matlab
 yalmiptest('sdpt3')
 ````
 
 To test a particular setup, provide an option structure.
-````matlabb
+````matlab
 yalmiptest(sdpsettings('solver','sdpt3'))
 ````

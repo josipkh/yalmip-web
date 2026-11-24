@@ -1,6 +1,6 @@
 ---
 title: "Stochastic programming"
-category: unclassified
+category: tutorial
 level: 4
 tags: [stochastic programming]
 excerpt: "Probably working."
