@@ -13,7 +13,7 @@ sidebar:
 ## Syntax
 
 ````matlab
-saveampl(F,h,filename)
+savecplexlp(F,h,filename)
 ````
 
 ## Examples
@@ -26,7 +26,7 @@ A = randn(5,3);
 b = randn(5,1);
 c = randn(3,1);
 F = [A*x <= b, integer(x(2:3))];
-saveampl(F,c'*x,'mymodel');
+savecplexlp(F,c'*x,'mymodel');
 ````
 
 ## Comments

@@ -8,9 +8,9 @@ sidebar:
   nav: "commands"
 ---
 
-[optimizer](/command/optimizer) creates an object with a pre-compiled low-level numerical format which can be used to efficiently solve a series of similar problems (reduces YALMP analysis and compilation overhead)
+[optimizer](/command/optimizer) creates an object with a pre-compiled low-level numerical format which can be used to efficiently solve a series of similar problems (reduces YALMIP analysis and compilation overhead)
 
-**Warning:** Never start your model development using optimizer constructs. Always start with a standard model based on calls to [optimize](/command/optimize), and then when everything works as expected, adjust you model to use [optimizer](/command/optimizer) instead, if you think this will improve simulation performance. Debugging models in the [optimizer](/command/optimizer) world is much harder, and [optimizer](/command/optimizer) skips many sanity checks and simply assumes you know what you are doing and the the model can be solved, once parameters are fixed, by the selected solver.
+**Warning:** Never start your model development using optimizer constructs. Always start with a standard model based on calls to [optimize](/command/optimize), and then when everything works as expected, adjust your model to use [optimizer](/command/optimizer) instead, if you think this will improve simulation performance. Debugging models in the [optimizer](/command/optimizer) world is much harder, and [optimizer](/command/optimizer) skips many sanity checks and simply assumes you know what you are doing and the model can be solved, once parameters are fixed, by the selected solver.
 {: .notice--info}
 
 
@@ -94,7 +94,7 @@ Error flags from the solutions can be extracted using a second argument
 [xvalue, errorcode] = P(pi)
 ````
 
-By default, the solver is run in silent model, and to turn on display we have to increase verbosity level to 2.
+By default, the solver is run in silent mode, and to turn on display we have to increase verbosity level to 2.
 
 ````matlab
 options = sdpsettings('solver','mosek','verbose',2);
@@ -134,7 +134,7 @@ p = 1 + x + x^2 + x^3 + x^4
 solvesos(sos(p-t),-t)
 ````
 
-Now consider the case where we want to investigate a lower bound for a set of polynomials with undeceided variables. Effectively, we want to find a parameter \\(b\\) such that the lower bound is maximized, and test this for a sequence of polynomials depending on a parameter \\(a\\) (which thus is fixed for every sum-of-squares problem solved). 
+Now consider the case where we want to investigate a lower bound for a set of polynomials with undecided variables. Effectively, we want to find a parameter \\(b\\) such that the lower bound is maximized, and test this for a sequence of polynomials depending on a parameter \\(a\\) (which thus is fixed for every sum-of-squares problem solved).
 
  ````matlab
 sdpvar x t a b
@@ -152,7 +152,7 @@ sol = P(-10:1:10);
 plot(sol(1,:))
 ````
 
-Variables involved in defining the geometry of an uncertainty set when using the robust optimization framework cannot be parameters (during compilation, YALMIP treats all parameters asdecision variables, and this effectively means that there is no description of the uncertainty set (the uncertainty set is defined as the constraints only involving uncertain variables)). Hence, the following scaled uncertainty box will not work
+Variables involved in defining the geometry of an uncertainty set when using the robust optimization framework cannot be parameters (during compilation, YALMIP treats all parameters as decision variables, and this effectively means that there is no description of the uncertainty set (the uncertainty set is defined as the constraints only involving uncertain variables)). Hence, the following scaled uncertainty box will not work
 
 ````matlab
 sdpvar t U w

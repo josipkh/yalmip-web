@@ -1,6 +1,6 @@
 ---
 category: command
-excerpt: "Etract the basis of an expression for variable index"
+excerpt: "Extract the basis of an expression for variable index"
 title: getbasematrix
 tags: [Low-level]
 date: '2021-05-06'
@@ -8,7 +8,7 @@ sidebar:
   nav: "commands"
 ---
 
-[getbase](/command/getbasematrix) returns the full basis for a particular variable index in an [sdpvar](/command/sdpvar) expression.
+[getbasematrix](/command/getbasematrix) returns the full basis for a particular variable index in an [sdpvar](/command/sdpvar) expression.
 
 ## Syntax
 
@@ -18,7 +18,7 @@ B = getbasematrix(x,index)
 
 ## Examples
 
-Expressions are are built-up from internal variable indicies ([getvariables](/command/getvariables)) and a basis. We can extract the full basis with respect to a particular variable index
+Expressions are built-up from internal variable indices ([getvariables](/command/getvariables)) and a basis. We can extract the full basis with respect to a particular variable index
 
 ````matlab
 yalmip('clear')

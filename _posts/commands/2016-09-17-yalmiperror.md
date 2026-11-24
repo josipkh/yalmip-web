@@ -17,7 +17,7 @@ string = yalmiperror(n)
 ````
 
 ## Examples
-To se all available error codes, simply issue the command without any input.
+To see all available error codes, simply issue the command without any input.
 ````matlab
 yalmiperror
 

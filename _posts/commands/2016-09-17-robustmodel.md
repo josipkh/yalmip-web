@@ -13,7 +13,7 @@ sidebar:
 ## Syntax
 
 ````matlab
- [Frobust,robustobjective] = robustify(F,objective,options)
+ [Frobust,robustobjective] = robustmodel(F,objective,options)
 ````
 
 ## Examples

@@ -24,7 +24,7 @@ x = sdpvar(2,1);
 sdisplay(p)
 ````
 
-The second output are the coefficients that parametrize the polynomial and the third output are the involved monomials.
+The second output contains the coefficients that parametrize the polynomial and the third output contains the involved monomials.
 
 The command is equivalent to the following code.
 ````matlab

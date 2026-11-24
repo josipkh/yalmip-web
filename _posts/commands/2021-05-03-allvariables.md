@@ -18,7 +18,7 @@ y = allvariables(A,B,...)
 
 ## Examples
 
-Create a set of constraints and an objective, and then create an new objective function which adds a penalty on all involved variables
+Create a set of constraints and an objective, and then create a new objective function which adds a penalty on all involved variables
 
 ````matlab
 % My original model
@@ -32,7 +32,7 @@ Obj = Obj + 0.01*norm(allvariables(Model,Obj))
 
 ## Comments
 
-The command is a utility replacing repated application of [depends](/command/depends) followed by [recover](/command/recover), i.e. it simplifies patterns of the type
+The command is a utility replacing repeated application of [depends](/command/depends) followed by [recover](/command/recover), i.e. it simplifies patterns of the type
 
 ````matlab
 x1 = depends(A);x2 = depends(B);

@@ -1,6 +1,6 @@
 ---
 category: command
-excerpt: "Import model deom SDPA ASCII file"
+excerpt: "Import model from SDPA ASCII file"
 title: loadsdpafile
 tags: [Export and import]
 date: '2016-09-17'
