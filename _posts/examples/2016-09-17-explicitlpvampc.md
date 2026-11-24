@@ -228,7 +228,7 @@ obj = w;
 
 ### Results
 
-Finally the control performance of the Explicit LPV-MPC controller is compared to a PWA approach and the truely optimal solution for a certain scheduling parameter trajectory (for details see the above mentioned paper). Note that a robust MPC controller *failed* to stabilize the system.
+Finally the control performance of the Explicit LPV-MPC controller is compared to a PWA approach and the truly optimal solution for a certain scheduling parameter trajectory (for details see the above mentioned paper). Note that a robust MPC controller *failed* to stabilize the system.
 
 The actual costs of the closed-loop system over a grid of initial points are depicted in the following Figure. Both the Explicit LPV-MPC controller as well as the PWA MPC controller achieve close to optimal performance (the average cost increase is 2.3 % vs. 3.9 %).
 

@@ -166,7 +166,7 @@ legend('True','Measurements','With our penalty','Standard regression')
 
 ### Converting to quadratic program
 
-As a final note separate from the issues concering **if** statements, let us try to move from a mixed-integer second-order cone formulation to a mixed-integer quadratic program, which typically can be solved more efficiently. The trick is to realize that the objective either is a linear term, or a squared linear term, depending on where we are. We therefore define each term in the objective as a sum of a linear term and a squared linear term, and zero out suitable parts.
+As a final note separate from the issues concerning **if** statements, let us try to move from a mixed-integer second-order cone formulation to a mixed-integer quadratic program, which typically can be solved more efficiently. The trick is to realize that the objective either is a linear term, or a squared linear term, depending on where we are. We therefore define each term in the objective as a sum of a linear term and a squared linear term, and zero out suitable parts.
 
 ````matlab
 xhat = sdpvar(6,1);

@@ -13,7 +13,7 @@ In most of the examples related to logic programming and nonconvex models, the i
 
 ## Big-M reformulations
 
-Big-M reformulations are used to convert a logic or nonconvex constraint to a set of constraints describing the same feasible set, using auxillary binary variables and additional logic constraints.
+Big-M reformulations are used to convert a logic or nonconvex constraint to a set of constraints describing the same feasible set, using auxiliary binary variables and additional logic constraints.
 
 As an example, consider the logic constraint **if y == 1 then x==0** where **y** is binary and **x** is a continuous variable, which in YALMIP is written as **implies(y,x==0)**. A big-M reformulation of this constraint would be
 

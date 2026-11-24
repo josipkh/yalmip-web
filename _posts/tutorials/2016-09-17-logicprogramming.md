@@ -4,7 +4,7 @@ category: inside
 subcategory: 1
 permalink: "/tutorial/logicprogramming"
 tags: [Logic programming, Big-M, Integer programming]
-excerpt: "Logic programming in YALMIP means programming with operators such as alldifferent, number of non-zeros, implications and similiar combinatorial objects."
+excerpt: "Logic programming in YALMIP means programming with operators such as alldifferent, number of non-zeros, implications and similar combinatorial objects."
 ---
 
 YALMIP does a lot of modelling for you behind the scenes, but sometimes it is important to know how models are created and what the standard building blocks and tricks are. Creating integer programming representable models seem like magic to some, but there are really only a few standard tricks used leading to a family of models. 
@@ -18,7 +18,7 @@ YALMIP does a lot of modelling for you behind the scenes, but sometimes it is im
 Some simple rules and strategies when deriving models for complex logic and combinatorials models:
 1. Try to represent things with disjoint events of the kind "exactly one of these things occur" with a binary variable associated to each event.
 2. Try to arrive at "binary variable implies set of constraints"
-3. Introduce intermediate auxilliary variables to keep things clean
+3. Introduce intermediate auxiliary variables to keep things clean
 4. Decompose the logic using intermediate variables to connect parts
 
 In other words, a large sparse simple model is much better than a compact complex model. What we try to emphasize in the examples is that **most models can be derived using exactly the same strategy and a few very basic building blocks**. Many of the models can be simplified and reduced, but those steps are typically done just as efficiently inside the solver during pre-solve.
@@ -122,7 +122,7 @@ This is a general strategy throughout. If you enter complex expressions, introdu
 
 ### If a then  \\(f(x) < 0\\)
 
-Strict inequalities are impossible in practice (unless \\(f(x)\\) is quantized such as only involving integer variables). Hence, you have to use a margin and hope that this in combination with solver tolerances leads to a solution which actually satisfies the constraints (solutions claimed feasible and optimal can easily be infeasible and are only guaranteed to satisfy solver tolerance and termination critera)
+Strict inequalities are impossible in practice (unless \\(f(x)\\) is quantized such as only involving integer variables). Hence, you have to use a margin and hope that this in combination with solver tolerances leads to a solution which actually satisfies the constraints (solutions claimed feasible and optimal can easily be infeasible and are only guaranteed to satisfy solver tolerance and termination criteria)
 
 $$
 f(x) \leq -\epsilon  + M(1-a)
@@ -136,7 +136,7 @@ $$
 f(x) \leq M(1-a),-f(x)\leq Ma
 $$
 
-To create more easily generalizable models and learn a common core strategy, it is adviced to think of this as two disjoint cases each associated with a set of constraints. 
+To create more easily generalizable models and learn a common core strategy, it is advised to think of this as two disjoint cases each associated with a set of constraints.
 
 $$
 \begin{align}
@@ -197,7 +197,7 @@ $$
 f(x)\geq -Ma
 $$
 
-Note that we use a non-strict inequality. If behaviour around 0 is important, a margin will have to be used as discussed before, ant is up to you and your goal to decide if the margin is positive or negative,i.e. towards whih side you prefer incorrect activations to happen.
+Note that we use a non-strict inequality. If behaviour around 0 is important, a margin will have to be used as discussed before, and it is up to you and your goal to decide if the margin is positive or negative, i.e., towards which side you prefer incorrect activations to happen.
 
 
 ### If \\( f(x) = 0\\) then a
@@ -240,7 +240,7 @@ $$
 
 ### If \\( f(x) \leq 0\\) then a else not a
 
-Now it starts paying of thinking in terms of auxilliary variables and disjoint cases. This is 
+Now it starts paying off thinking in terms of auxiliary variables and disjoint cases. This is
 
 $$
 \begin{align}
@@ -390,7 +390,7 @@ z_1 + z_2 &= 1
 \end{align}
 $$
 
-Remember that absolute value is convex, so you only use a MILP representation if absoutely needed.
+Remember that absolute value is convex, so you only use a MILP representation if absolutely needed.
 
 ### y = max(x)
 
@@ -446,7 +446,7 @@ In theory introduce integer \\(y\\) and \\(x \leq y < x+1\\). In practice strict
 
 ### y = fix(x)
 
-Round towards zero means we we want floor for positive arguements and ceil for negative arguments. We can write this as 
+Round towards zero means we want floor for positive arguments and ceil for negative arguments. We can write this as
 
 $$
 \begin{align}
@@ -611,7 +611,7 @@ $$
 ## Other modeling strategies
 {: #other }
 
-As you should have seen by know, the approach to model is almost always the same. Use the basic building blocks of implications, with auxilliary variables, and try to flatten the logic as much as possible
+As you should have seen by know, the approach to model is almost always the same. Use the basic building blocks of implications, with auxiliary variables, and try to flatten the logic as much as possible
 
 ### Counters and loops
 

@@ -143,7 +143,7 @@ axis equal;
 ## Built-in support
 
 
-As we have seen, by using [sos2](/command/sos) it is straightforward to derive a model, but YALMIP has built-in support for creating these sets even more conveniently. By default it only takes the coordinates and the element intended to be in the set and assumes star-convexity w.r.t to the origin. A fourth argument can be used to translate the set, and there is a fifth option to allow for scaling. With a sixth options, you can ask for YALMIP to automatically shift the model to derive a star-convexity model around a particular point, the mean, median or center of bounding box.
+As we have seen, by using [sos2](/command/sos2) it is straightforward to derive a model, but YALMIP has built-in support for creating these sets even more conveniently. By default it only takes the coordinates and the element intended to be in the set and assumes star-convexity w.r.t to the origin. A fourth argument can be used to translate the set, and there is a fifth option to allow for scaling. With a sixth options, you can ask for YALMIP to automatically shift the model to derive a star-convexity model around a particular point, the mean, median or center of bounding box.
 
 ````matlab
 Model = starpolygon(xi,yi,z);       % Define model z in star-convex polygon defined by (xi,yi). Origin assumed to be vantage point

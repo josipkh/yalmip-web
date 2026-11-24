@@ -47,7 +47,7 @@ Model = [implies(d,x>=0), sum(d) >= 0.5*n,  -1 <= x <= 1];
 optimize(Model,Objective)
 ````
 
-Going beyond these two models is never adviced, as it only complicates matters. However, let's see if we can come up with other models just for fun.
+Going beyond these two models is never advised, as it only complicates matters. However, let's see if we can come up with other models just for fun.
 
 ### sort
 

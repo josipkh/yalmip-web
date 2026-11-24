@@ -16,7 +16,7 @@ For an introduction to bilevel optimization, see [Bard 1999](/reference/bard1999
 
 ### KKT conditions in bilevel programming
 
-The class of bilevel problems that can be adressed natively by YALMIP has to have the following leader-follower (outer-inner) structure
+The class of bilevel problems that can be addressed natively by YALMIP has to have the following leader-follower (outer-inner) structure
 
 $$
 \begin{aligned}

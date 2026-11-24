@@ -24,7 +24,7 @@ The code below is primarily intended for solvers with dedicated exponential cone
 
 ### Logistic regression example
 
-As an example, we solve a logistic regression problem. The problem here is to find a classifier \\( \operatorname{sign}(a^Tx + b)\\) for a given dataset \\( x_i\\) with associated labels \\( y_i = \pm 1 \\). In other words, a classifier similiar to the simple separating hyperplane discussed in the [linear programming tutorial](/tutorial/linearprogramming). 
+As an example, we solve a logistic regression problem. The problem here is to find a classifier \\( \operatorname{sign}(a^Tx + b)\\) for a given dataset \\( x_i\\) with associated labels \\( y_i = \pm 1 \\). In other words, a classifier similar to the simple separating hyperplane discussed in the [linear programming tutorial](/tutorial/linearprogramming).
 
 A convex relaxation of the problem can be solved by minimizing \\( \sum \log(1 + e^{-y_i(a^Tx_i + b)}) \\). This can be written as a sum of [logsumexp](/command/logsumexp) operators by noting that \\( \log(1 + e^{z})=\log(e^{0} + e^{z}) \\). In YALMIP, you do not have to think further, but can use the [logsumexp](/command/logsumexp) operator directly to solve the problem. However, let us show how this boils down to a simple exponential cone program.
 

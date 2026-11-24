@@ -145,7 +145,7 @@ res =
   7.3674e-012
 ````
 
-It is very rare (except in contrived academic examples) that one finds a decomposition with a positive definite \\(Q\\) and zero mismatch between \\(v^T(x)Qv(x)\\)  and the polynomial \\(p(x)\\). The reason is simply that all SDP solver use floating-point arithmetics. Hence, in principle, the decomposition has no theoretical value as a certificate for non-negativity unless additional post-analysis is performed (relating the size of the residual with the eigenvalues of the Gramian).
+It is very rare (except in contrived academic examples) that one finds a decomposition with a positive definite \\(Q\\) and zero mismatch between \\(v^T(x)Qv(x)\\)  and the polynomial \\(p(x)\\). The reason is simply that all SDP solvers use floating-point arithmetic. Hence, in principle, the decomposition has no theoretical value as a certificate for non-negativity unless additional post-analysis is performed (relating the size of the residual with the eigenvalues of the Gramian).
 
 ### Parameterized problems
 

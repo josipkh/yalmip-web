@@ -41,14 +41,14 @@ x = sdpvar(1);
 [p,a,v] = polynomial(x,n);
 ````
 
-The vector \\(a\\) holds the coefficients, and \\(v(x)\\) is the corresponding basis in \\(p(x) = a^Tv(x)\\). To handle point-wise constraints on the polynomial, we use the command [replace](/command/polynomial) for evaluation. Solving the initial problem is thus
+The vector \\(a\\) holds the coefficients, and \\(v(x)\\) is the corresponding basis in \\(p(x) = a^Tv(x)\\). To handle point-wise constraints on the polynomial, we use the command [replace](/command/replace) for evaluation. Solving the initial problem is thus
 
 ````matlab
 Model = [replace(p,x,x0)==y0,replace(p,x,x1)>=y1, replace(p,x,x2)==y2];
 optimize(Model)
 ````
 
-This a trivial linear program in the coefficients \\(a\\) without any objective. To plot the polynomial, we use built-in functionality (but note that YALMIP has a reveresed order on monomials in a polynomial compared to polyval).
+This a trivial linear program in the coefficients \\(a\\) without any objective. To plot the polynomial, we use built-in functionality (but note that YALMIP has a reversed order on monomials in a polynomial compared to polyval).
 
 ````matlab
 xv = linspace(x0,x2,100);
@@ -71,7 +71,7 @@ hold on
 plot(xv,yv)
 ````
 
-Let us now add an objective. As an example, let us minimize the squared integral \\( \int_{-1}^1 p(\tau)^2d\tau\\). Note that this is a convex quadratic funtion in \\(a\\).
+Let us now add an objective. As an example, let us minimize the squared integral \\( \int_{-1}^1 p(\tau)^2d\tau\\). Note that this is a convex quadratic function in \\(a\\).
 
 ````matlab
 Model = [replace(p,x,x0)==y0,replace(p,x,x1)>=y1, replace(p,x,x2)==y2,
@@ -110,7 +110,7 @@ Unfortunately, with a too coarse gridding, the non-negativity constraint will be
 
 Instead, we can apply sum-of-squares arguments. We want \\(p(x) \geq 0 \\) for all \\(x^2 \leq 1\\). In a sum-of-squares setup, we first rewrite this as finding a certificate polynomial \\(s(x)\geq 0\\) such that \\( p(x) \geq s(x)(1-x^2)\\). At this point, the positivity requirements are replaced with sum-of-squares decomposability.
 
-In the following code, we define a parameterised quadratic multiplier \\(s(x)\\) and solve the sum-of-squares program to find a polynomial \\(p(x)\\) which is guranteed to be locally non-negative
+In the following code, we define a parameterised quadratic multiplier \\(s(x)\\) and solve the sum-of-squares program to find a polynomial \\(p(x)\\) which is guaranteed to be locally non-negative
 
 ````matlab
 Model = [replace(p,x,x0)==y0,replace(p,x,x1)>=y1, replace(p,x,x2)==y2,
