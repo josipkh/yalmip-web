@@ -11,7 +11,7 @@ date: 2017-09-01
 
 YALMIP is shipped with two built-in mixed-integer conic programming solvers, both relying on external solvers to do the heavy work, but in completely different ways.
 
-The most known solver is the solver [BNB](/solver/bnb), which is a classical branch-and-bound implementation for mixed-integer convex programs (it can applied to any problem, but global optimality guarantees only hold for problems where the continuous relaxations are convex). The solvers are only relevant for mixed-integer semidefinite programs. For all other problem classes there are much better [external solvers](/tags/#mixed-integer-programming-solver).
+The most known solver is the solver [BNB](/solver/bnb), which is a classical branch-and-bound implementation for mixed-integer convex programs (it can be applied to any problem, but global optimality guarantees only hold for problems where the continuous relaxations are convex). These solvers are only relevant for mixed-integer semidefinite programs. For all other problem classes there are much better [external solvers](/tags/#mixed-integer-programming-solver).
 
 A less known internal mixed-integer solver is [CUTSDP](/solver/cutsdp). While [BNB](/solver/bnb) is based on branch-and-bound where, roughly speaking, integrality is approximated and relaxed during the iterative process, [CUTSDP](/solver/cutsdp) is based on an iterative process where the geometry of the semidefinite cone is approximated and relaxed during the process, while integrality is guaranteed throughout.
 
@@ -21,7 +21,7 @@ A less known internal mixed-integer solver is [CUTSDP](/solver/cutsdp). While [B
 
 The basic idea is simple, and is a classical approach to nonlinear programming. A semidefinite constraint \\(X\succeq 0\\) is by definition equivalent to the infinite-dimensional linear programming model \\(v^TXv \geq 0 ~ \forall~v\\). The trick now is to cleverly generate a lot of vectors \\(v\\) and construct a linear program, such that the geometry of the linear programming model starts to approximate the geometry of the semidefinite program. Every such added linear constraint is called a cutting plane. Note that the linear program is an *outer approximation* of the original semidefinite program. This means that a feasible solution to the linear programming approximation is not guaranteed to be a feasible solution to the semidefinite program. It also means that if we are minimizing an objective, it will generate a lower bound.
 
-To see the basic idea in practice, we consider a simple semidefinite constraint defining a ball, and an objective which tells us we want to go as far as possible to the nort-east, and then approximate this model with an increasing number of cutting planes (to speed up the process, we add 20 cutting planes before plotting again. To see a faster high-level implementation, look at [this post](/example/scenariosampling)). Note also that almost all time here is spent on plotting the set.
+To see the basic idea in practice, we consider a simple semidefinite constraint defining a ball, and an objective which tells us we want to go as far as possible to the north-east, and then approximate this model with an increasing number of cutting planes (to speed up the process, we add 20 cutting planes before plotting again). To see a faster high-level implementation, look at [this post](/example/scenariosampling). Note also that almost all time here is spent on plotting the set.
 
 ````matlab
 sdpvar x y
@@ -48,7 +48,7 @@ end
 
 Creating a solver based on this strategy is primarily about generating relevant cutting planes, instead of randomly placing them everywhere. Since we have an objective function, we are not interested in approximating the whole feasible set, but only need a good approximation around the (unknown) optimal point. Additionally, as it is in the implementation above, we are generating new cuts which might be completely redundant, i.e., they do not cut away any infeasible points.
 
-Consider a solution leading to a matrix \\(X^{\star}\\). If the solution is infeasible with regards to the semidefinite constraint, we know that the smallest eigenvalue of \\(X^{\star}\\) is negative. Hence there is a negative \\(\lambda\\) and a vector  \\(v\\) such that  \\(X^{\star}v = \lambda v\\),. i.e., \\(v^TX^{\star}v = \lambda v^Tv < 0\\). In other words, the current solution violates the constraint \\(v^TXv \geq 0\\). This indicates that eigenvectors \\(v\\) associated with negative eigenvalues for the current semidefinite constraints are suitable candidates for creating cutting planes.
+Consider a solution leading to a matrix \\(X^{\star}\\). If the solution is infeasible with regards to the semidefinite constraint, we know that the smallest eigenvalue of \\(X^{\star}\\) is negative. Hence there is a negative \\(\lambda\\) and a vector  \\(v\\) such that  \\(X^{\star}v = \lambda v\\), i.e., \\(v^TX^{\star}v = \lambda v^Tv < 0\\). In other words, the current solution violates the constraint \\(v^TXv \geq 0\\). This indicates that eigenvectors \\(v\\) associated with negative eigenvalues for the current semidefinite constraints are suitable candidates for creating cutting planes.
 
 ````matlab
 ballApproximation = [-1 <= [x y] <= 1];

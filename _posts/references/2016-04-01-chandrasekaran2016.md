@@ -10,7 +10,7 @@ sidebar:
 ---
 ````
 @Article{chandrasekaran2016,
-author="Chandrasekaran, Venkat and and Shah, Parikshit",
+author="Chandrasekaran, Venkat and Shah, Parikshit",
 title="Relative entropy optimization and its applications",
 journal="Mathematical Programming Series A",
 year="2016",

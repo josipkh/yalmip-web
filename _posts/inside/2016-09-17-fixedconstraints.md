@@ -22,7 +22,7 @@ This is a perfectly valid model. Now, let us assume that the magic numbers **k**
 
 ````matlab
 k = 1;
-m = 1;
+m = 0;
 sdpvar x y
 Constraints = [x >= 1, y >= k*y + m]
 optimize(F,obj)

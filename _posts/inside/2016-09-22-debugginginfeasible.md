@@ -95,7 +95,7 @@ check(Constraints)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 ````
 
-If this would have shown all constraints feasible, you would have found a bug in both YALMIP and all solvers you've tested. Most likely it will show that some constrant is infeasible, as in this case where contraint 5 is violated.
+If this would have shown all constraints feasible, you would have found a bug in both YALMIP and all solvers you've tested. Most likely it will show that some constraint is infeasible, as in this case where constraint 5 is violated.
 
 So, constraint 5? With the set of constraints listed above, it might be a nightmare to figure out which constraint this actually is. This is where [tagging constraints](/taggingconstraints) might help. Add some nice tags in your code that defines the constraints, and it might look like this instead
 
@@ -135,7 +135,7 @@ check(Foo)
 
 ### 6. Solve a model with slacked constraints
 
-Try to add slacks on constraints, and minimize the slack. Very often, you will see non-zero slacks just a few constraints, and they are often the guilty ones. At least it helps you to hone in on problematic constraints.
+Try to add slacks on constraints, and minimize the slack. Very often, you will see non-zero slacks in just a few constraints, and they are often the guilty ones. At least it helps you to hone in on problematic constraints.
 
 Hence, we replace
 
@@ -180,7 +180,7 @@ ans =
 The fifth constraints combined in the two sets of constraints appear to be problematic, as we cannot find a solution where they both are feasible.
 
 
-### 7. Bisect you constraints
+### 7. Bisect your constraints
 
 Remove constraints, and see when it becomes feasible. In the end, this might be your only option to hone in on the problems in your code. You can do this either by commenting out parts in your code, or by indexing from the full set.
 
@@ -202,7 +202,7 @@ sol = optimize(Constraints(1:10));if sol.problem==0;display('Feasible');else;dis
 Feasible
 ````
 
-From this we know that the problem occurs when the eleventh constraint is added to the model, in combination with the other. Now you just have to come up with strategies to dig further. Essentially some kind of bisection.
+From this we know that the problem occurs when the eleventh constraint is added to the model, in combination with the others. Now you just have to come up with strategies to dig further. Essentially some kind of bisection.
 
 ````matlab
 sol = optimize(Constraints([1:5 11]));if sol.problem==0;display('Feasible');else;display('Infeasible');end
@@ -220,7 +220,7 @@ There we have it. Constraint 5 and 11 are inconsistent. Figure out why!
 
 ### Debugging more complex models
 
-In more complex models with interacting constraints, you might need more advanced strategies. One such idea is to try to re-order group constraints to detect problems and then solve after each added category. Simply speaking, throw in a bunch of calls to optimizer in the code and see where it fails. No reason to debug any code below that point. With the reaning block, start commenting out various parts to see if they are irrelevant w.r.t the infeasibility.
+In more complex models with interacting constraints, you might need more advanced strategies. One such idea is to try to re-order group constraints to detect problems and then solve after each added category. Simply speaking, throw in a bunch of calls to optimizer in the code and see where it fails. No reason to debug any code below that point. With the remaining block, start commenting out various parts to see if they are irrelevant w.r.t the infeasibility.
 
 More structure, divide your model into logical sets of constraints (clean up your messy code!), so your initial problematic model looks something like this (remember, we only want to detect the reason for infeasibility so we only solve the feasibility problem)
 
@@ -291,7 +291,7 @@ Model = [Model,ObjectiveConstraints];
 optimize(Model) % fail!
 ````
 
-Hene, all you know now is that the last set of constraints turns the whole model infeasible, but that does not mean that there is an error in that single constraint. Indeed, we can check it individually, and see that it is feasible.
+Hence, all you know now is that the last set of constraints turns the whole model infeasible, but that does not mean that there is an error in that single constraint. Indeed, we can check it individually, and see that it is feasible.
 
 ````matlab
 optimize(ObjectiveConstraints) % works

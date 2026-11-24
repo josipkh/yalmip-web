@@ -16,7 +16,7 @@ $$
 
 However, in many cases you may want to use a square-root in a nonconvex fashion, and solve the problem using a general-purpose nonlinear solver, such as [FMINCON](/solver/fmincon). In these situations, you do not want YALMIP to fail due to convexity propagation problems. In other cases, it might be the case that your model satisfies all convexity requirements, but you still want to solve the problem using [FMINCON](/solver/fmincon), and in those cases it would be silly to use a second-order cone model for a simple nonlinear function. 
 
-The remedy to these situations is to use the operator [sqrtm](/command/sqrtm) instead. The [sqrtm](/command/sqrtm) operator is implemented as an [callback nonlinear operator](/tutorial/nonlinearoperatorscallback), and will therefore not generate any second-order cone constraints. Furthermore, the [sqrtm](/command/sqrtm) operator does not require convexity.
+The remedy to these situations is to use the operator [sqrtm](/command/sqrtm) instead. The [sqrtm](/command/sqrtm) operator is implemented as a [callback nonlinear operator](/tutorial/nonlinearoperatorscallback), and will therefore not generate any second-order cone constraints. Furthermore, the [sqrtm](/command/sqrtm) operator does not require convexity.
 
 An alternative which often is even better is to square the constraint as this in many cases turns a general nonlinear non-smooth nonconvex constraint into a nonconvex quadratic constraint which there are more alternatives for if you are aiming for a globally optimal solution.
 
@@ -49,4 +49,4 @@ optimize(F,obj)
 
 Finally, we also note that square roots can be implemented using powers, such as **x^0.5**. This should be reserved for situations where you aim for a [geometric programming](/tutorial/geometricprogramming) approach.
 
-Another related command is [cpower](/command/cpower) which implements a conic model of powers,obviously reserved to convex cases where you intend to use a conic solver.
+Another related command is [cpower](/command/cpower) which implements a conic model of powers, obviously reserved for convex cases where you intend to use a conic solver.

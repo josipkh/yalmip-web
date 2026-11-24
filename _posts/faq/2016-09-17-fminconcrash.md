@@ -7,4 +7,4 @@ sidebar:
   nav:
 ---
 
-Do you have [MOSEK](/solver/mosek) installed? This can cause problems due to an inconsistency between MATLABs and Moseks implementation of the file optimset.m. Remove [MOSEK](/solver/mosek) from your path.
+Do you have [MOSEK](/solver/mosek) installed? This can cause problems due to an inconsistency between MATLAB's and MOSEK's implementations of the file optimset.m. Remove [MOSEK](/solver/mosek) from your path.

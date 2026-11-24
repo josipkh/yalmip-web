@@ -26,17 +26,17 @@ There is no minimizer to this problem due to the open feasible set coming from t
 
 If you think in floating-point numbers you might be cheeky and say that the solution in MATLAB should be \\( 2.2251\cdot 10^{-308}\\) which is the smallest real number MATLAB can generate. But then you no longer solved the strict problem but solved the problem with \\( x\geq 2.2251\cdot 10^{-308}\\) which makes no sense to state in practice as discussed below.
 
-You might complain and say that you do not require the optimal solution, but only a good enough solution. Then we have to ask why you bother with the strict inequality to begin with. Simply replace it with some strict inequality bounded away from zero. Your good-enough-tolerance is just another way of expressing a margin to non-strict.
+You might complain and say that you do not require the optimal solution, but only a good enough solution. Then we have to ask why you bother with the strict inequality to begin with. Simply replace it with some non-strict inequality bounded away from zero. Your good-enough-tolerance is just another way of expressing a margin to non-strict.
 
 ## Why strict inequalities make no sense - practice
 
-If you somehow managed to tell the solver to only return strict solution, this epsilon-strictness would drown in the general tolerances and margins used in a solver. Already with a non-strict constraints, solvers typically only promise that they returns solutions which are numerically close to feasible, using tolerances of, say, \\(10^{-8}\\)
+If you somehow managed to tell the solver to only return strict solution, this epsilon-strictness would drown in the general tolerances and margins used in a solver. Already with a non-strict constraint, solvers typically only promise that they return solutions which are numerically close to feasible, using tolerances of, say, \\(10^{-8}\\).
 
 Essentially all numerical solvers interfaced in YALMIP work with infeasible methods which approach the optimal solution not necessarily from the feasible region. The term interior-point might fool some to think that the solver definitely works in the interior, but this interior is not necessarily the interior of your model which you think of geometrically, but can be interior of some lifted/slacked/dual space.
 
 ## What to do then?
 
-So you really want a strict solution, but you only have strict constraints to work with. The first thing you should do is to really confirm that you need strict solutions. If you still need this, a simple approah is to simply skip this in the modelling phase, and just check that the solution satisfies your strictness condition. 
+So you really want a strict solution, but you only have non-strict constraints to work with. The first thing you should do is to really confirm that you need strict solutions. If you still need this, a simple approach is to simply skip this in the modelling phase, and just check that the solution satisfies your strictness condition.
 
 If this does not hold, you have to force the solver to stay away from your forbidden region. What this means is that you add margins in your constraints, scalar or semidefinite depending on the set you are working with.
 
@@ -52,4 +52,4 @@ A (maybe not so) clever reformulation might be to introduce a new variable \\(t\
 
 ## But it is an integer variable!
 
-Writing \\(x > 0\\) for an integer variable \\(x\\) is just an awkvard way of saying \\(x \geq 1\\).
+Writing \\(x > 0\\) for an integer variable \\(x\\) is just an awkward way of saying \\(x \geq 1\\).

@@ -8,17 +8,17 @@ tags: [Multiobjective programming, Portfolio optimization]
 date: 2017-11-24
 ---
 
-A common question is how one can solve [multi-objective problems](https://en.wikipedia.org/wiki/Multi-objective_optimization) using YALMIP. The standard answer is that you cannot solve these using YALMIP. A more detailed answer is that you cannot solve these problem until you have sorted out what you actually mean when you talk about a solution to a multi-objective problem, as there is no single solution but a set of solutions, and finding this set can be done using various strategies.
+A common question is how one can solve [multi-objective problems](https://en.wikipedia.org/wiki/Multi-objective_optimization) using YALMIP. The standard answer is that you cannot solve these using YALMIP. A more detailed answer is that you cannot solve these problems until you have sorted out what you actually mean when you talk about a solution to a multi-objective problem, as there is no single solution but a set of solutions, and finding this set can be done using various strategies.
 
-At the core, there is typically a fundamental misconception about multi-objective optimization, in the sense that it would be possible to magically compute **a** solution which optimizes several competing objective. Of course, it is impossible to design a car which is as light as possible, as cheap as possible, as fast as possible, and as durable as possible, all at the same time. In the end, the solution to the obviously multi-objective task of designing a car, will be a compromise. Multi-objective optimization is about finding **the set** of non-bad compromises, which is called the Pareto-optimal solutions.
+At the core, there is typically a fundamental misconception about multi-objective optimization, in the sense that it would be possible to magically compute **a** solution which optimizes several competing objectives. Of course, it is impossible to design a car which is as light as possible, as cheap as possible, as fast as possible, and as durable as possible, all at the same time. In the end, the solution to the obviously multi-objective task of designing a car, will be a compromise. Multi-objective optimization is about finding **the set** of non-bad compromises, which is called the Pareto-optimal solutions.
 
 So, the answer to the question is
 
 * No, you cannot compute **the** solution to the multi-objective problem, as there is no such thing.
-* No, YALMIP does not interface any multi-objective solver to compute the pareto-optimal solution set.
+* No, YALMIP does not interface any multi-objective solver to compute the Pareto-optimal solution set.
 * Yes, of course you can compute solutions to the multi-objective problem by simply implementing a multi-objective algorithm using any standard solver to compute solutions to the optimization problems that arise.
 
-## Scalarizing a the multi-objective
+## Scalarizing the multi-objective problem
 
 A simple way to attack a multi-objective problem is to scalarize the objective functions, i.e. introduce a single objective which represents a compromise of the competing objectives. 
 
@@ -42,7 +42,7 @@ In this problem, we have two competing objectives, minimizing the variance of th
 optimize(Constraints, 0.5*Variance + 0.5*Return);
 ````
 
-Why 0.5? Well, that is precisely the problem. There is no clear-cut answer on that. It depends on what you want to achieve, i.e., which compromise you are interested in.
+Why 0.5? Well, that is precisely the problem. There is no clear-cut answer to that. It depends on what you want to achieve, i.e., which compromise you are interested in.
 
 Hence, what one typically wants to do then is to solve the problem for a range of scalarization compromises, and try to get a feeling for the character of the solutions, and use some logic to pick the best compromise.
 
@@ -76,7 +76,7 @@ for i = 1:length(t)
 end
 ````
 
-An more general approach is to implement the strategy using an [optimizer object](/command/optimizer). Note that we return the value of the variance computed from the allocation, instead of the simple epigraph variable. The reason is that the epigraph variable is not used when **t = 1** and thus the epigraph variable and the expression it bounds are not the same in that border case. Also note that the solver has to be specified, in this case we pick [MOSEK](/solver/mosek)
+A more general approach is to implement the strategy using an [optimizer object](/command/optimizer). Note that we return the value of the variance computed from the allocation, instead of the simple epigraph variable. The reason is that the epigraph variable is not used when **t = 1** and thus the epigraph variable and the expression it bounds are not the same in that border case. Also note that the solver has to be specified, in this case we pick [MOSEK](/solver/mosek)
 
 ````matlab
 sdpvar v

@@ -18,7 +18,7 @@ When YALMIP sets up a sum-of-squares problem, there are two alternative approach
 
 ![Primal form]({{ site.url }}/images/primalform.gif){: .center-image }
 
-An alternative approach, which typically is the approach seen when using pen and paper, is the image representation, also called dual form. This form is typically less efficient computationally, but is easier to understand, and is the only applicable method when parametric variables have advanced constraints, such as integer constraints or additional nonconvex constraints. YALMIP use this form by setting the option sos.model to 2. Of course, the data (**C**,**A**,**b**,**F**,**f**) is different in the two models, otherwise it would make no difference since most solvers solve the primal and the dual problem simultaneously.
+An alternative approach, which typically is the approach seen when using pen and paper, is the image representation, also called dual form. This form is typically less efficient computationally, but is easier to understand, and is the only applicable method when parametric variables have advanced constraints, such as integer constraints or additional nonconvex constraints. YALMIP uses this form by setting the option sos.model to 2. Of course, the data (**C**,**A**,**b**,**F**,**f**) is different in the two models, otherwise it would make no difference since most solvers solve the primal and the dual problem simultaneously.
 
 ![Dual form]({{ site.url }}/images/dualform.gif){: .center-image }
 
@@ -44,7 +44,7 @@ p = (1+x*y)^2-x*y+(1-y)^2;
 g = [5-x;5+x;5-y;5+y]
 ````
 
-To solve the problem, we will apply the postivstellensatz using quadratic multipliers. Hence, we define 4 parameterized multiplier polynomials
+To solve the problem, we will apply the Positivstellensatz using quadratic multipliers. Hence, we define 4 parameterized multiplier polynomials
 
 ````matlab
 [s1,c1] = polynomial([x y],2);
@@ -64,7 +64,7 @@ ops = sdpsettings('sos.model',2);
 [sol,v,Q] = solvesos(Constraints,-lower,ops,Params);
 ````
 
-For this to really be a certificate, all Gramians, returned in the output '''Q''', should be positive semidefinite. This is however not the case for most solvers.
+For this to really be a certificate, all Gramians, returned in the output `Q`, should be positive semidefinite. This is however not the case for most solvers.
 
 ````matlab
 >> min(eig(Q{1}))

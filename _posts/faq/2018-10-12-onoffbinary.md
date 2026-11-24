@@ -40,7 +40,7 @@ Model = [Model, x(k) == x(k-1) + w(k), -M*d(k) <= w(k) <= M*d(k), -M*(1-d(k)) <=
 
 Alternatively, there is a command [binmodel](/command/binmodel) to use in more complex scenarios if you are too lazy to detect and untangle all the nonlinear products.
 
-Some more on-off modelling is discussed n the [unit commitment example](/example/unitcommitment).
+Some more on-off modelling is discussed in the [unit commitment example](/example/unitcommitment).
 
 
 

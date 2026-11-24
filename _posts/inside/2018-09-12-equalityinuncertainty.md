@@ -16,13 +16,13 @@ Trying to develop [robust optimization](/tutorial/robustoptimization) models wit
  
  - understand the difference between **an equality constraint ==** and an **assignment =**
   
- - understand the difference between a **decison variable** and a **policy or decision rule**.
+ - understand the difference between a **decision variable** and a **policy or decision rule**.
 
 ### How to buy a horse
 
 To understand the problem, we work with the following problem.
 
-Alice and Bob are going to the market to buy a horse. They will pay for the horse by trading with sheep. They do not know the current market price **p** of a horse, all they know is that it cost somewhere between 50 and 190 sheep. Alice and Bob will bring the sheep in their trucks. Alice will bring **a** sheep in her truck, while  Bob will bring **b** sheep. They have been told by their manager that they can under no circumstances bring any sheep back to the farm, and they can leave no sheep at the market but all sheep must be used to pay for the horse, and they must pay the market price and nothing else. Both Alice and Bobs truck can pack 200 sheep.
+Alice and Bob are going to the market to buy a horse. They will pay for the horse by trading with sheep. They do not know the current market price **p** of a horse, all they know is that it costs somewhere between 50 and 190 sheep. Alice and Bob will bring the sheep in their trucks. Alice will bring **a** sheep in her truck, while  Bob will bring **b** sheep. They have been told by their manager that they can under no circumstances bring any sheep back to the farm, and they can leave no sheep at the market but all sheep must be used to pay for the horse, and they must pay the market price and nothing else. Both Alice's and Bob's trucks can pack 200 sheep.
 {: .notice--success}
 
 To figure out how many sheep they should bring in their trucks when going to the market, they must thus solve the uncertain feasibility problem
@@ -38,25 +38,25 @@ sdpvar a b p
 Model = [0 <= a <= 200, 0 <= b <= 200, a + b == p, 50 <= p <= 190, uncertain(p)]
 ````
 
-It should be pretty obvious that this is a nonsense problem. It is completely impossible to select the fixed decisions **a** and **b** at the farm, go the market and figure out the price, and magically have the correct number of sheep in their trucks. Indeed, if you try to solve the optimization problem, it will be infeasible. You simply cannot have a linear equality which involves both decisions variables and uncertain variables.
+It should be pretty obvious that this is a nonsense problem. It is completely impossible to select the fixed decisions **a** and **b** at the farm, go the market and figure out the price, and magically have the correct number of sheep in their trucks. Indeed, if you try to solve the optimization problem, it will be infeasible. You simply cannot have a linear equality which involves both decision variables and uncertain variables.
 
 Let us untangle what has gone wrong. The first issue is that the setup simply doesn't make sense in real-life, which translates to the incorrect use of an equality ==. So what could the manager have meant that they should do, and how does that translate to the model.
 
-It could be that the manager meant that Alice first should load her truck with **a** sheep (make a fixed decision), go to the market and check the price, and then call Bob and have him bring the remaining sheep. This is a causal structure where Bobs decision **b** really isn't a decision, but a simple function of Alice decision and the uncertainty, **b = p-a**. An **incorrect** model of this would be
+It could be that the manager meant that Alice first should load her truck with **a** sheep (make a fixed decision), go to the market and check the price, and then call Bob and have him bring the remaining sheep. This is a causal structure where Bob's decision **b** really isn't a decision, but a simple function of Alice's decision and the uncertainty, **b = p-a**. An **incorrect** model of this would be
 
 ````matlab
 sdpvar a b p
 Model = [0 <= a <= 200, 0 <= b <= 200, b == p-a, 50 <= p <= 190, uncertain(p)]
 ````
 
-The problem with this model is that we are still saying that Bobs load is a fixed decision (since it is its own decision variable), while we really only want it to be a function of Alice load and the market price. We thus do not want to model an equality between two independent decision variables and an uncertain price, but simply define the linear map that arise due to the causal (time-dependent order) structure in the problem. The correct model would thus be
+The problem with this model is that we are still saying that Bob's load is a fixed decision (since it is its own decision variable), while we really only want it to be a function of Alice's load and the market price. We thus do not want to model an equality between two independent decision variables and an uncertain price, but simply define the linear map that arises due to the causal (time-dependent order) structure in the problem. The correct model would thus be
 
 ````matlab
 sdpvar a p
 b = p-a
 Model = [0 <= a <= 200, 0 <= b <= 200, 50 <= p <= 190, uncertain(p)]
 ````
-In this model there is only 1 decision variable (**a**). Bobs load is simply an assignment from fixed decisions and uncertainties. We've introduced an intermediate placeholder for our convenience, but what YALMIP sees here is really
+In this model there is only 1 decision variable (**a**). Bob's load is simply an assignment from fixed decisions and uncertainties. We've introduced an intermediate placeholder for our convenience, but what YALMIP sees here is really
 
 ````matlab
 sdpvar a p
@@ -72,7 +72,7 @@ b = p/2
 Model = [0 <= a <= 200, 0 <= b <= 50, 50 <= p <= 190, uncertain(p)]
 ````
 
-This model is a bit too simple (we have no decision variables!) but it illustrates the idea of a policy compared to a decision. An improvement which could be useful in a more complex scenario is to parameterize the policy. The manager thinks Alice and Bob are too dumb to load cleverly once they know the price (Alice truck is bigger so perhaps they should load more sheep in her truck). Hence, he wants to create a function that they can use to select the number of cheap to load. One such policy is a linear decision rule \\(a = t_0 + t_1p, b = s_0 + s_1p\\). As long as \\(t_0+s_0 = 0\\) and \\(t_1+s_1 = 1\\), they will bring the correct amount. Here, we thus decide upon the decision rule parameters before knowing the price of the horse, but once the price is known, we have a method to distribute the load.
+This model is a bit too simple (we have no decision variables!) but it illustrates the idea of a policy compared to a decision. An improvement which could be useful in a more complex scenario is to parameterize the policy. The manager thinks Alice and Bob are too dumb to load cleverly once they know the price (Alice's truck is bigger so perhaps they should load more sheep in her truck). Hence, he wants to create a function that they can use to select the number of sheep to load. One such policy is a linear decision rule \\(a = t_0 + t_1p, b = s_0 + s_1p\\). As long as \\(t_0+s_0 = 0\\) and \\(t_1+s_1 = 1\\), they will bring the correct amount. Here, we thus decide upon the decision rule parameters before knowing the price of the horse, but once the price is known, we have a method to distribute the load.
 
 ````matlab
 sdpvar p t0 t1 s0 s1
@@ -81,7 +81,7 @@ b = s0 + s1*p;
 Model = [0 <= a <= 200, 0 <= b <= 200, t0+s0 == 0, t1+s1 == 1, 50 <= p <= 190, uncertain(p)]
 ````
 
-We explictly derived the condition necessary on the policy parameters for it to be correct. This can be done automatically by exploiting the fact that an equality involving uncertainties make no sense. The following model will work equivalently
+We explicitly derived the condition necessary on the policy parameters for it to be correct. This can be done automatically by exploiting the fact that an equality involving uncertainties makes no sense. The following model will work equivalently
 
 ````matlab
 sdpvar p t0 t1 s0 s1
@@ -101,7 +101,7 @@ Alice manages a warehouse selling goods. The stock of goods available in the war
 $$
 w_i = w_{i-1} - s_{i-1} + u_{i-2} + 0.1s_{i-2}
 $$
-The warehouse can only stock 8000 items, and we must always have enough in stock to be able to sell to all prospective customers. At the same time, keeping a large stock is a waste of capital resources, so it should be kept as small as possible. To model that, our goal it to minimize the predicted sum of the stock over the coming days.
+The warehouse can only stock 8000 items, and we must always have enough in stock to be able to sell to all prospective customers. At the same time, keeping a large stock is a waste of capital resources, so it should be kept as small as possible. To model that, our goal is to minimize the predicted sum of the stock over the coming days.
 {: .notice--success}
 
 Let us start by setting up a typical incorrect model. We assume we are making plans for our restocking for 10 days ahead, and we assume we start from scratch in a situation where we have 2500 items in the inventory (typically you would have some history of sales and restocking orders that you would have to include, and we do this in the final version). To make it even more realistic in terms of what a naive user would do, we write the code in an ugly non-vectorized fashion, and we will also write the dynamical update in a way that hides the simple causality structure. Note that we have to make sure we satisfy the warehouse capabilities both in the morning when new supplies arrive, and in the evening to ensure we aren't running out of stock during the day.
@@ -129,7 +129,7 @@ Model = [uncertain([s1 s2 s3 s4 s5 s6 s7 s8 s9]),
         0 <= [u1 u2 u3 u4 u5 u6 u7 u8]]
 Cost = w1+w2+w3+w4+w5+w6+w7+w8+w9+w10        
 ````
-Let us untangle all the mistakes. First, we have written the dynamical update of the stock in a way that hides the simple update law. It looks like all variables are coupled by a large number of equality constraints, but that's not true. The stock is completely and uniquely goverened by a linear time-invariant dynamical system with states \\(w_i\\) and external inputs \\(u_i\\) and \\(s_i\\). Secondly, the future stock is not a decision variable, it is an expression built from the initial stock, the sequence of sales, and the sequence of restocking order (which is the only decision variable). Hence, a first step would be create the predicted future states using the corresponding assignments
+Let us untangle all the mistakes. First, we have written the dynamical update of the stock in a way that hides the simple update law. It looks like all variables are coupled by a large number of equality constraints, but that's not true. The stock is completely and uniquely governed by a linear time-invariant dynamical system with states \\(w_i\\) and external inputs \\(u_i\\) and \\(s_i\\). Secondly, the future stock is not a decision variable, it is an expression built from the initial stock, the sequence of sales, and the sequence of restocking orders (which is the only decision variable). Hence, a first step would be to create the predicted future states using the corresponding assignments
 
 ````matlab
 sdpvar s1 s2 s3 s4 s5 s6 s7 s8 s9 s10
@@ -154,9 +154,9 @@ Model = [uncertain([s1 s2 s3 s4 s5 s6 s7 s8 s9 s10]),
 Cost = w1+w2+w3+w4+w5+w6+w7+w8+w9+w10        
 ````
 
-This model makes sense physically. Our only decisions are the restocking orders for the coming 10 days, and there are no equalities involving uncertainties, but all future warehouse scenarios are simple maps from realizations of sales, and the restocking plan. Note that **w10** is a complex expression containing all sales variables and all restocking order variables. 
+This model makes sense physically. Our only decisions are the restocking orders for the coming 10 days, and there are no equalities involving uncertainties, but all future warehouse scenarios are simple maps from realizations of sales, and the restocking plan. Note that **w10** is a complex expression containing all sales variables and all restocking orders variables.
 
-From a planning perspecive, the model is horrible though. It says Alice has to decide all future restocking orders now, before knowing anything about how the sales goes. We are forcing a fixed decision on all future 8 restocking orders already today, and not epxloiting the fact that our purchase order two days ahead should be based on how much we sell today and tomorrow. We will improve that soon, but first let us solve this so called open-loop problem, or non-recourse.
+From a planning perspective, the model is horrible though. It says Alice has to decide all future restocking orders now, before knowing anything about how the sales goes. We are forcing a fixed decision on all future 8 restocking orders already today, and not exploiting the fact that our purchase order two days ahead should be based on how much we sell today and tomorrow. We will improve that soon, but first let us solve this so-called open-loop problem, or non-recourse.
 
 ````matlab
 optimize(Model,Cost)        
@@ -258,7 +258,7 @@ ans =
    19660
 ````
 
-No improvement. However, since the dynamics evolve over several days with returned items and deliveries, we should perhaps use more information in our policies. The restocking order next week should be allowed to use all information gathered up until that evening.
+No improvement. However, since the dynamics evolve over several days with returned items and deliveries, we should perhaps use more information in our policies. The restocking orders next week should be allowed to use all information gathered up until that evening.
 
 ````matlab
 sdpvar s1 s2 s3 s4 s5 s6 s7 s8 s9 s10
@@ -298,7 +298,7 @@ ans =
    19660
 ````
 
-Nope. Taking todays sale into account is sufficient in this scenario. At this point though, it shoulds be evident that one should vectorize the code. We do that, but go back to our simple policy.
+Nope. Taking today's sale into account is sufficient in this scenario. At this point though, it should be evident that one should vectorize the code. We do that, but go back to our simple policy.
 
 ````matlab
 s = sdpvar(1,10);

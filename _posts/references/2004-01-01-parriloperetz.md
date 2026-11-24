@@ -10,8 +10,8 @@ sidebar:
 ---
 
 ````
-@article{Parrilo and Peretz:2004,
-author = {P. A. Parrilo, R. Peretz},
+@article{ParriloPeretz2004,
+author = {Parrilo, P. A. and Peretz, R.},
 journal = {Discrete and Computational Geometry},
 month = {February},
 pages = {357--367},

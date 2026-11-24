@@ -11,7 +11,7 @@ YALMIP is a language for [disciplined convex programming](/tutorial/nonlinearope
 
 ## Nonconvex use of graph representations
 
-Many operators in YALMIP are modelled in different ways depending on context. The following model is convex, and YALMIP will derive a [linear programming representation](/tutorial/nonlinearoperatorsgraphs)).
+Many operators in YALMIP are modelled in different ways depending on context. The following model is convex, and YALMIP will derive a [linear programming representation](/tutorial/nonlinearoperatorsgraphs).
 
 ````matlab
 A = randn(10,2);y=randn(10,1);
@@ -20,7 +20,7 @@ x = sdpvar(2,1);
 optimize([norm(x,1) <= 1], norm(A*x - y,1))
 ````
 
-If we change the constraints slightly the model becomes nonconvex, but YALMIP will not complain as it just changes the modeling approach and derives a [mixed-integer linear programming repesentation](/tutorial/nonlinearoperatorsmixedinteger) of the nonconvex constraint instead.
+If we change the constraints slightly the model becomes nonconvex, but YALMIP will not complain as it just changes the modeling approach and derives a [mixed-integer linear programming representation](/tutorial/nonlinearoperatorsmixedinteger) of the nonconvex constraint instead.
 
 ````matlab
 optimize([0.1 <= norm(x,1) <= 1], norm(A*x - y,1))
@@ -47,7 +47,7 @@ optimize([0.1^2 <= x'*x <= 1], norm(A*x - y,1),sdpsettings('solver','fmincon'))
 optimize([0.1^2 <= x'*x <= 1], norm(A*x - y,1),sdpsettings('solver','bmibnb'))
 ````
 
-Operators where this lack of mixed-integer fallbacks are causing problems most often are non-LP representable [norm](/command/norm) and [sqrt](/command/sqrt). In the case of [sqrt](/command/sqrt) squaring a constraint is typically the solution although one also can go for an [alternative implementation](/squareroots).
+Operators where this lack of mixed-integer fallbacks is causing problems most often are non-LP representable [norm](/command/norm) and [sqrt](/command/sqrt). In the case of [sqrt](/command/sqrt) squaring a constraint is typically the solution although one also can go for an [alternative implementation](/squareroots).
 
 There are some linear-programming representable functions which in theory could have mixed-integer linear programming representations (such as [sumk](/command/sumk)), but lack this as.
 

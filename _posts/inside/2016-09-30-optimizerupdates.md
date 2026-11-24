@@ -13,7 +13,7 @@ The [optimizer](/command/optimizer) has been revamped significantly internally, 
 
 For those of you who have missed this feature, [optimizer](/command/optimizer) allows you to define a parameterized optimization problem which YALMIP precompiles to its internal numerical format. This object can then be instantiated for particular values on the parameters. This allows for, e.g., rapid simulation and experimentation with optimization problems, as most of the YALMIP overhead is removed from the loop.
 
-Consider the problem of investigating the optimal value \\(x\\) in the optimization problem \\(\textbf{min}_x~ (x-b)^2~\textbf{subject to}~ -a\leq x \leq a\\), as \\(a\\) and \\(b\\) varies. Creating an [optimizer](/command/optimizer) object for this setup is essentially done in the same fashion as when we solve the optimization problem, except that we declare parameters (\\(a\\) and \\(b\\)) and outputs (\\(x\\)) as trailing arguments. It is recommended to explicitly declare the solver to be used. Here we specify [MOSEK](/solver/mosek), as we trivially know that the optimization problem will be a quadratic program once \\(a\\) and \\(b\\) are fixed (as it is a quadratic program already when they are decision variables).
+Consider the problem of investigating the optimal value \\(x\\) in the optimization problem \\(\textbf{min}_x~ (x-b)^2~\textbf{subject to}~ -a\leq x \leq a\\), as \\(a\\) and \\(b\\) vary. Creating an [optimizer](/command/optimizer) object for this setup is essentially done in the same fashion as when we solve the optimization problem, except that we declare parameters (\\(a\\) and \\(b\\)) and outputs (\\(x\\)) as trailing arguments. It is recommended to explicitly declare the solver to be used. Here we specify [MOSEK](/solver/mosek), as we trivially know that the optimization problem will be a quadratic program once \\(a\\) and \\(b\\) are fixed (as it is a quadratic program already when they are decision variables).
 
 ````matlab
 sdpvar x a b
@@ -30,7 +30,7 @@ xoptimal = Saturation([1;3])
 
 ### Improved syntax
 
-If you have used [optimizer](/command/optimizer) before, you might notice that we now call the object with parantheses instead of curly brackets. Parantheses is the new standard, but curly brackets still apply.
+If you have used [optimizer](/command/optimizer) before, you might notice that we now call the object with parentheses instead of curly brackets. Parentheses is the new standard, but curly brackets still apply.
 
 ````matlab
 xoptimal = Saturation{[1;3]}
@@ -41,7 +41,7 @@ Instead of vectorizing the parameters into one vector, we can, as before, create
 Saturation = optimizer([-a <= x <= a], Objective,sdpsettings('solver','mosek'), { a , b }, x)
 ````
 
-To be backwards compatible and be somewhat lax in common confusions between the old format (first line below) and prefered new (two last), the solution can be obtained with
+To be backwards compatible and be somewhat lax in common confusions between the old format (first line below) and preferred new (two last), the solution can be obtained with
 
 ````matlab
 xoptimal = Saturation{ {1,3} }
@@ -153,9 +153,9 @@ Solver = saturation(1,3,'nosolve');
 xoptimal = Solver([]);
 ````
 
-This feature can be useful in some cases where we concatentate several models, and then solve a problem on the intersection of all constraints.
+This feature can be useful in some cases where we concatenate several models, and then solve a problem on the intersection of all constraints.
 
-Another new feature is the possibility to concatenate [optimizer](/command/optimizer) objects. This is in particular useful when performing partial instantiations. All constraints in the concatenated models are appended, and the new objective is the average of all involved objectives, i.e, they are summed up.
+Another new feature is the possibility to concatenate [optimizer](/command/optimizer) objects. This is in particular useful when performing partial instantiations. All constraints in the concatenated models are appended, and the new objective is the average of all involved objectives, i.e., they are summed up.
 
 Consider a case where we have two models
 
@@ -185,4 +185,4 @@ Merge = [Case1,Case2];
 xoptimal = Merge()
 ````
 
-Note that current relase assumes that all concatenated models involve exactly the same variables, both parameters and decision variables.
+Note that current release assumes that all concatenated models involve exactly the same variables, both parameters and decision variables.

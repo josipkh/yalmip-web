@@ -10,7 +10,7 @@ date: 2018-04-25
 
 In this quick post, we look at the problem of having parameterized uncertainty sets, and how these can be dealt with by reparameterizing the uncertainty.
 
-The type of models YALMIP works with in [robust optimization](/tutorial/robustoptimization) is assumed to of the form 
+The type of models YALMIP works with in [robust optimization](/tutorial/robustoptimization) is assumed to be of the form
 
 $$
 \begin{aligned}
@@ -19,7 +19,7 @@ $$
 \end{aligned}
 $$
 
-However, in some cases it might be that the uncertainty set is parameterized, and the parameters defining the geometry are seen as decision variables. A typical case would be that the size of the set is parameter, and we wish to compute a robust solution which is some compromise between the level of robustness and conservativity. YALMIP does not support this, as YALMIP cannot distinguish between normal decision variables, and parameters in uncertainty sets. If a constraint is defined using both uncertain variables and variables which are not declared as uncertain, it will be considered to be an uncertain constraint, and not a definition of an uncertainty set.
+However, in some cases it might be that the uncertainty set is parameterized, and the parameters defining the geometry are seen as decision variables. A typical case would be that the size of the set is a parameter, and we wish to compute a robust solution which is some compromise between the level of robustness and conservativity. YALMIP does not support this, as YALMIP cannot distinguish between normal decision variables, and parameters in uncertainty sets. If a constraint is defined using both uncertain variables and variables which are not declared as uncertain, it will be considered to be an uncertain constraint, and not a definition of an uncertainty set.
 
 ## Reparameterizing the uncertainty
 
@@ -48,7 +48,7 @@ UncertaintyModel = [norm(z-zc,1) <= r];
 optimize([UncertainConstraint,UncertaintyModel,uncertain(z)],-r)
 ````
 
-This model will fail, since YALMIP cannot find the intended uncertainty desciption here, as there is no constraint which only involves uncertain variables. Adding \\(r\\) and \\(z_c\\) to the list of uncertain variables does not make sense either, as they are not uncertain, but simply not decided yet.
+This model will fail, since YALMIP cannot find the intended uncertainty description here, as there is no constraint which only involves uncertain variables. Adding \\(r\\) and \\(z_c\\) to the list of uncertain variables does not make sense either, as they are not uncertain, but simply not decided yet.
 
 The way to model this setup is to think of a normalized uncertainty, and then write the uncertainty in terms of this normalized uncertainty. In our case, we can see the uncertainty as a scaled and translated uncertainty.
 

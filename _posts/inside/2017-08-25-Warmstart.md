@@ -8,7 +8,7 @@ tags: [Warm-start, Assign, Initial]
 date: 2017-08-25
 ---
 
-In some cases, a solver might benefit from an initial guess on where to start the search, so called warm-starting.
+In some cases, a solver might benefit from an initial guess on where to start the search, so-called warm-starting.
 
 ## Linear, quadratic and conic programming
 
@@ -18,7 +18,7 @@ These solvers often work with your model in a primal-dual space, typically with 
 
 ## Nonlinear optimization
 
-The typical situation where you would want to supply an an initial guess is when you use a general purpose nonlinear solver, such as [FMINCON](/solver/fmincon), [KNITRO](/solver/knitro) or [IPOPT](/solver/ipopt). 
+The typical situation where you would want to supply an initial guess is when you use a general purpose nonlinear solver, such as [FMINCON](/solver/fmincon), [KNITRO](/solver/knitro) or [IPOPT](/solver/ipopt).
 
 Supplying an initial guess is typically done for two reasons. The first and most common reason is that we have a vague idea about where the solution to a non-convex problem is, and want to start the search in that region. The second reason is that the problem involves singularities and generally tricky regions, and we want to ensure that the solver does not try to start there.
 
@@ -64,13 +64,13 @@ optimize(Constraints,Objective,ops);
 Local minimum found.
 ````
 
-Many solvers have some internal logic in selecting an initial guess better than \\(0\\). In the case of [fmincon](/solver/fmincon) , it looks at bounds and initializes variables inside bounds. Hence, we can avoid the singularity by adding a bound which excludes \\(0\\).
+Many solvers have some internal logic in selecting an initial guess better than \\(0\\). In the case of [fmincon](/solver/fmincon), it looks at bounds and initializes variables inside bounds. Hence, we can avoid the singularity by adding a bound which excludes \\(0\\).
 
 ````matlab
 optimize([Constraints, x >= 0.01],Objective);
 ````
 
-Note, if we restart the solver now, the value assigned to the variables are those obtained in the latest solve or assigment. Hence, calling [optimize](/command/optimize) again will have the solver restart where it ended.
+Note, if we restart the solver now, the value assigned to the variables is that obtained in the latest solve or assignment. Hence, calling [optimize](/command/optimize) again will have the solver restart where it ended.
 
 
 ````matlab
@@ -109,7 +109,7 @@ Note that it is not necessary that we have the same constraints in the two probl
 
 ## Integer programming
 
-In constrast to standard linear and conic programming problems, with integer variables we might benefit from having an initial guess. At the moment, [gurobi](/solver/gurobi) and [cplex](/solver/cplex) are the only integer solvers which can be supplied with an initial guess from YALMIP.
+In contrast to standard linear and conic programming problems, with integer variables we might benefit from having an initial guess. At the moment, [gurobi](/solver/gurobi) and [cplex](/solver/cplex) are the only integer solvers which can be supplied with an initial guess from YALMIP.
 
 Let us create a random integer program
 
@@ -142,15 +142,15 @@ assign(z,2);
 optimize(Constraint,Objective, sdpsettings('solver','gurobi','usex0',1));
 ````
 
-### Supplying initials guesses in integer programs might help less than you think
+### Supplying initial guesses in integer programs might help less than you think
 
-It is important to understand that warm-starting integer programs might have no impact at all. Integer programs are hard due to two main reasons. The first and perhaps what many think is the hard part, is to find a feasible solution, and finding the optimal solution. This is called the upper bound generation. The second part is to derive lower bounds on the acheivable performance through relaxations. For some models, it is trivial to find the optimal solution, but it is extremely hard to create good lower bounds and thus proving that the currently best solution found actually is the globally optimal solution. In those cases, supplying an initial guess does not help much, as the solver would have found it quickly anyways.
+It is important to understand that warm-starting integer programs might have no impact at all. Integer programs are hard due to two main reasons. The first and perhaps what many think is the hard part, is to find a feasible solution, and finding the optimal solution. This is called the upper bound generation. The second part is to derive lower bounds on the achievable performance through relaxations. For some models, it is trivial to find the optimal solution, but it is extremely hard to create good lower bounds and thus proving that the currently best solution found actually is the globally optimal solution. In those cases, supplying an initial guess does not help much, as the solver would have found it quickly anyways.
 
 ## Hidden variables
 
-When you create high-level models in YALMIP, you only see the variables you explicitly define. However, behind many functions and operators, YALMIP will introduce additional variables to create, e.g., [graph representations](/tutorial/nonlinearoperatorsgraphs), or to normalize expressions inside nonlinear operators to simplify convexity propagation and computations of derivatives in [callback operators](/tutorial/nonlinearoperatorscallback). Hence, you assign variables and try to warm-start the solver, but it still fails, as not all variables have an inital assignment and the solver picks it own initial starting-point instead.
+When you create high-level models in YALMIP, you only see the variables you explicitly define. However, behind many functions and operators, YALMIP will introduce additional variables to create, e.g., [graph representations](/tutorial/nonlinearoperatorsgraphs), or to normalize expressions inside nonlinear operators to simplify convexity propagation and computations of derivatives in [callback operators](/tutorial/nonlinearoperatorscallback). Hence, you assign variables and try to warm-start the solver, but it still fails, as not all variables have an initial assignment and the solver picks its own initial starting point instead.
 
-YALMIP tries to propagate your initial guesses to the internally introduced variables, but it is not guaranteed to always do this. As an example, the following model uses the linear-programming representable [sumk](/command/sumk) operator, and the initial guess on (\x\) will not be propagated to the auxilliary variables required to represent the epigraph of this operator.
+YALMIP tries to propagate your initial guesses to the internally introduced variables, but it is not guaranteed to always do this. As an example, the following model uses the linear-programming representable [sumk](/command/sumk) operator, and the initial guess on \(x\) will not be propagated to the auxiliary variables required to represent the epigraph of this operator.
 
 ````matlab
 x = sdpvar(3,1);
@@ -178,6 +178,6 @@ shifted x0 to strictly satisfy the bounds.
 Local minimum found that satisfies the constraints.
 ````
 
-For variables which haven't been assigned any values, YALMIP will use the value 0 if the option to use initial guesses is turned on. As we can see in the display, [fmincon](/solver/fmincon) sees that the supplied iniital guess is infeasible, and tweaks it and tries from another point instead. Luckily, it manages to find an alternative inital point which appears to keep our assigned values (inital cost is 6.0, which is the objective for \\(x = 0.5\\)).
+For variables which haven't been assigned any values, YALMIP will use the value 0 if the option to use initial guesses is turned on. As we can see in the display, [fmincon](/solver/fmincon) sees that the supplied initial guess is infeasible, and tweaks it and tries from another point instead. Luckily, it manages to find an alternative initial point which appears to keep our assigned values (initial cost is 6.0, which is the objective for \\(x = 0.5\\)).
 
 

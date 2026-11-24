@@ -12,7 +12,7 @@ date: 2018-10-12
 Notice that the core in YALMIP has had some performance improvements which makes the use of an optimizer object less beneficial in this example. Nevertheless, the general idea introduced here with a sparse parameterization in the optimizer is still important.
 {: .notice--info}
 
-The [optimizer framework](/command/optimizer) can be used to reduce overhead significantly when solving many similiar problems, by pre-compiling a model parameterized in set of parameters which can change.
+The [optimizer framework](/command/optimizer) can be used to reduce overhead significantly when solving many similar problems, by pre-compiling a model parameterized in set of parameters which can change.
 
 The goal with [optimizer](/command/optimizer) is to move as much as possible of YALMIP overhead related to model analysis, solver selection, operator modelling, and extraction of low-level numerical models closer to solver formats, to a pre-compilation stage, and then only adjust a small part of the partially compiled model when some parameter changes, before compiling the final solver model and sending it to the solver. 
 
@@ -57,7 +57,7 @@ Solver = optimizer(x >= 0, norm(A*x - b)),sdpsettings('solver','mosek'),{A,b},x)
 xd = Solver(Ad,bd);
 ````
 
-Unfortunately, this will be a massively complicated object. The expression **Ax** involves 4 million symbolic monomials and it takes around 10 minutes to just create that expression! This is perhaps not a major issue if we can win back that time when we solve our problems, but we will meet more problems. Creating the solver object once **Ax** is formed takes another minute or so, but also this is a one-time occurance. However, once we start using the solver object, it's even more problematic. It turns out that the call with a data instance takes 5 minutes!, i.e., horribly slow compared to setting up the model from scratch.
+Unfortunately, this will be a massively complicated object. The expression **Ax** involves 4 million symbolic monomials and it takes around 10 minutes to just create that expression! This is perhaps not a major issue if we can win back that time when we solve our problems, but we will meet more problems. Creating the solver object once **Ax** is formed takes another minute or so, but also this is a one-time occurrence. However, once we start using the solver object, it's even more problematic. It turns out that the call with a data instance takes 5 minutes!, i.e., horribly slow compared to setting up the model from scratch.
 
 The problem is the extremely complicated bilinear object. When we send data to the solver object, it has to reason over and manipulate that massive 4 million terms object, in order to reduce the symbolic terms by replacing parameters with given data. 
 

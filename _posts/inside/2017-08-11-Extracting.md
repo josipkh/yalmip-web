@@ -8,7 +8,7 @@ tags: [Export and import, Low-level]
 date: 2017-08-11
 ---
 
-In normal cases, any communication between YALMIP and the solver is uninteresting, as all we are interested in is the [diagnostic code](/command/yalmiperror) available in the output from [optimize](/command/optimize) and optimal values which are asigned to our decision variables and available through [value](/command/value). There are however cases where we want to obtain all the information the solver has returned in the call, and the model we sent to the solver.
+In normal cases, any communication between YALMIP and the solver is uninteresting, as all we are interested in is the [diagnostic code](/command/yalmiperror) available in the output from [optimize](/command/optimize) and optimal values which are assigned to our decision variables and available through [value](/command/value). There are, however, cases where we want to obtain all the information the solver has returned in the call, and the model we sent to the solver.
 
 ## Extracting solver input
 
@@ -81,7 +81,7 @@ model =
 
 ## Extracting solver output
 
-In some cases, we might see some information displayed by the solver, such as gap metrics, feasibility distances, iteration counters, and we want to obtain those numbers. The only way to do this, beyond some clever regexp magic on the text in the command window, is to use the option **'savesolveroutput'**. When doing so, all information that the solver returns in MATLAB, will be available in the output structure returned in [optimize](/command/optimize) 
+In some cases, we might see some information displayed by the solver, such as gap metrics, feasibility distances, iteration counters, and we want to obtain those numbers. The only way to do this, beyond some clever regexp magic on the text in the command window, is to use the option **'savesolveroutput'**. When doing so, all information that the solver returns in MATLAB will be available in the output structure returned in [optimize](/command/optimize)
 
 ````matlab
 sdpvar x y

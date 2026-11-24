@@ -34,11 +34,11 @@ or even worse, the solver cannot understand if it is unbounded, infeasible, or p
           problem: 12
 ````          
 
-Before sending a post to the YALMIP [forum](https://groups.google.com/forum/#!forum/yalmip) to resolve the issue, you always make some minimal initial investigation.
+Before sending a post to the YALMIP [forum](https://groups.google.com/forum/#!forum/yalmip) to resolve the issue, you should always make some minimal initial investigation.
 
 ### 1. Is it really unbounded?
 
-To begin with, get rid of the objective function. Unboundedness can only arise due to an objective, but solvers can sometimes get confused due to various primal-dual presolve strategies etc. Hence, solve the problem without an objective. If it shows infeasibility, unboundedness is perhaps not the case (or you have a completely flawed model which is both infeasible and unbounded (without the infeasible constraints). If infeasibility is detected, you have to [sort out the infeasibility first](/debugginginfeasible).
+To begin with, get rid of the objective function. Unboundedness can only arise due to an objective, but solvers can sometimes get confused due to various primal-dual presolve strategies etc. Hence, solve the problem without an objective. If it shows infeasibility, unboundedness is perhaps not the case (or you have a completely flawed model which is both infeasible and unbounded (without the infeasible constraints)). If infeasibility is detected, you have to [sort out the infeasibility first](/debugginginfeasible).
 
 ````matlab
     yalmipversion: '20210331'
@@ -55,7 +55,7 @@ Nope, not that simple...
 
 If the solver says it is unbounded, the standard trick is to artificially bound the solution-space and solve the problem. If this new problem is solved without problems, you have a clear indication that the original problem is flawed and unbounded (due to unbounded variables) 
 
-The typical strategy is that you bound the solution-space using a large bounded set (such as a cube, or problem specific by bounding the trace of some positive semidefinite matrix you are working with etc), solve the problem, and then look at the solution to see if any variables end up at the artifially introduced bound. If they do, you have found your unbounded variables
+The typical strategy is that you bound the solution-space using a large bounded set (such as a cube, or problem specific by bounding the trace of some positive semidefinite matrix you are working with etc), solve the problem, and then look at the solution to see if any variables end up at the artificially introduced bound. If they do, you have found your unbounded variables.
 
 ````matlab
 sdpvar x y z
@@ -91,7 +91,7 @@ ans =
 
 ````
 
-Clearly, the last variable appears unbounded as it ended up at the artificial bound. Increasing the artificial bounds simply leads to a larger value on the variable, which is used in the objective and thus leads to unboundedness.
+Clearly, the last variable appears unbounded as it ended up at the artificial bound. Increasing the artificial bounds simply leads to a larger value of the variable, which is used in the objective and thus leads to unboundedness.
 
 In many cases your model is complex with loads of variables, and it might be cumbersome to list and constrain all variables. A convenient trick then is to use [allvariables](/command/allvariables) to collect all involved variables
 
@@ -118,4 +118,4 @@ Objective = x^2 + y*1e12+(z-1)^2*1e18;
 optimize(Model,Objective)
 ````
 
-A model like this is a recipie for disaster, and a clear sign that you have developed your model in the wrong units.
+A model like this is a recipe for disaster, and a clear sign that you have developed your model in the wrong units.
