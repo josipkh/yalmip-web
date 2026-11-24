@@ -203,7 +203,7 @@ examples:
         url: /example/integratedpwa  
       - title: "Modelling if-else"
         url: /example/modellingif          
-      - title: "Nonlinear linear programming"
+      - title: "Sorting with linear programming"
         url: /example/weightedsort        
       - title: "Polytopic geometry"
         url: /example/polytopicgeometry
@@ -399,8 +399,6 @@ commands:
         url: /command/norm
       - title: "pnorm"
         url: /command/pnorm
-      - title: "nnz"
-        url: /command/nnz
       - title: "sort"
         url: /command/sort
       - title: "sqrt"
@@ -459,7 +457,7 @@ commands:
         url: /command/sosd
       - title: "vertex"
         url: /command/vertex         
-  - title: Auxilliary
+  - title: Auxiliary
     children:
       - title: "loadsdpafile"
         url: /command/loadsdpafile

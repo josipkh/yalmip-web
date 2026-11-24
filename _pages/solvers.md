@@ -6,23 +6,23 @@ sidebar:
   nav: "solvers"
 ---
 
-One of the core ideas in YALMIP is to rely on external solvers for the low-level numerical solution of optimization problem. YALMIP concentrates on efficient modeling and high-level algorithms.
+One of the core ideas in YALMIP is to rely on external solvers for the low-level numerical solution of optimization problems. YALMIP concentrates on efficient modeling and high-level algorithms.
 
 ## Recommended installation
 
 Linear programming can be solved by quadratic programming which can be solved by second-order cone programming which can be solved by semidefinite programming. Hence, in theory, you only need a semidefinite programming solver if you only solve linear problems. In practice though, dedicated solvers are recommended.
 
-A recommended installation if you mainly intend to solve semidefinite programs, and some LPs and QPs, is [MOSEK](/solver/mosek). As semidefinite programming alternatives [SEDUMI](/solver/sedumi) or [SDPT3](/solver/sdpt3) are good choices.
+A recommended installation if you mainly intend to solve semidefinite programs, and some LPs and QPs, is [MOSEK](/solver/mosek). As semidefinite programming alternatives, [SEDUMI](/solver/sedumi) or [SDPT3](/solver/sdpt3) are good choices.
 
-If you solve non-trivial linear and quadratic programs (and nonconvex problems via [BMIBNB](/solver/bmibnb),) a dedicated state-of-the-art LP/QP solver is definitely recommended. Most examples in this Wiki have been generated using [MOSEK](/solver/mosek) and [GUROBI](/solver/gurobi). These solvers have academic licenses giving access to full unlimited versions. [MOSEK](/solver/mosek) is a great general solver, but for MILPs [GUROBI](/solver/gurobi) typically has the upper hand.
+If you solve non-trivial linear and quadratic programs (and nonconvex problems via [BMIBNB](/solver/bmibnb)) a dedicated state-of-the-art LP/QP solver is definitely recommended. Most examples in this Wiki have been generated using [MOSEK](/solver/mosek) and [GUROBI](/solver/gurobi). These solvers have academic licenses giving access to full unlimited versions. [MOSEK](/solver/mosek) is a great general solver, but for MILPs [GUROBI](/solver/gurobi) typically has the upper hand.
 
-If you intend to solve large or generally challenging problemss, you should install several solvers to find one that works best for your problem.
+If you intend to solve large or generally challenging problems, you should install several solvers to find one that works best for your problem.
 
 And finally, there are no free lunches and you get what you pay for (unless you're in academia!).
 
 ## External solvers
 
-A simple categorization is as follows (the definitions of free and commercial depends slightly on the solver, please see the specific comments in the solver description)
+A simple categorization is as follows (the definitions of free and commercial depend slightly on the solver, please see the specific comments in the solver description)
 
 ### Linear programming (free)
 [CDD](/solver/cdd), CLP, [GLPK](/solver/glpk), [LPSOLVE](/solver/lpsolve), [QSOPT](/solver/qsopt), [SCIP](/solver/scip)
