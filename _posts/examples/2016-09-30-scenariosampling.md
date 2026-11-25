@@ -16,7 +16,7 @@ image:
   thumb: approximationromb2.png
 ---
 
-By using partially instantiated [optimizer](/command/optimizer) objects, we can build a sceanrio-based robust optimization solver.
+By using partially instantiated [optimizer](/command/optimizer) objects, we can build a scenario-based robust optimization solver.
 
 ## Defining a ball as an uncertain linear constraint
 
@@ -157,7 +157,7 @@ As we sample in the whole set (as in contrast to the boundary), we are generatin
 
 ![Approximated romb]({{ site.url }}/images/approximationromb1.png){: .center-image }
 
-Of course, this is a silly way to specify the set \\(\left\lvert v \right\rvert \leq 1 \\). An alternative old-school YALMIP approach to create this set in a silly way is to create it using the deterministic exact worst-case robust optimization framework, where the dual norm property is automatically derived (leading to a model with ony four linear constraints)
+Of course, this is a silly way to specify the set \\(\left\lvert v \right\rvert \leq 1 \\). An alternative old-school YALMIP approach to create this set in a silly way is to create it using the deterministic exact worst-case robust optimization framework, where the dual norm property is automatically derived (leading to a model with only four linear constraints)
 
 ````matlab
 Model = [v'*x <= 1, uncertain(-1 <= v <= 1)];
@@ -182,7 +182,7 @@ This sampler can now be assigned to an uncertain variable
 Model = [v'*x <= 1, uncertain(v,@mysampler)];
 ````
 
-Note that the sampler always sends the variable dimension to the sampler, which thus can be used in our function. If we have more arguments in our sample creater, we must specify those arguments
+Note that the sampler always sends the variable dimension to the sampler, which thus can be used in our function. If we have more arguments in our sample creator, we must specify those arguments
 
 ````matlab
 % mysampler.m

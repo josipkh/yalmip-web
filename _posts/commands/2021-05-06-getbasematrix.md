@@ -18,7 +18,7 @@ B = getbasematrix(x,index)
 
 ## Examples
 
-Expressions are are built-up from internal variable indicies ([getvariables](/command/getvariables)) and a basis. We can extract the full basis with respect to a particular variable index
+Expressions are built-up from internal variable indices ([getvariables](/command/getvariables)) and a basis. We can extract the full basis with respect to a particular variable index
 
 ````matlab
 yalmip('clear')

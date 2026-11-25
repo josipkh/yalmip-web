@@ -68,7 +68,7 @@ optimize(F,p,options);
 
 As you can see, a lot of time is spent in the linear programming based bound propagation. [BMIBNB](/solver/bmibnb) applies this on almost all models. If you want to turn it off, you set **'bmibnb.lpreduce'** to **0**, and if you want to enforce it you set it to **1**. Default is **-1** which means [BMIBNB](/solver/bmibnb) decides.
 
-Upper bounds are generated both by calling the nonlinear solver, but also by aggresively checking all kinds of candidates that pop up in the algorithm (solutions to lower bound problems, and points created when performing bound propagation). In the log above, we see that the nonlinear solver was only called 4 times, but 101 other solution candidates were analyzed as candidates for generating an upper bound. Also note that the globally optimal solution is found already in the root node, so all effort was effectively spent on certifying optimality. On some models finding the optimal solution is hard, and on some models the certification is the hard part, and you typically don't know which it is until you have solved the problem.
+Upper bounds are generated both by calling the nonlinear solver, but also by aggressively checking all kinds of candidates that pop up in the algorithm (solutions to lower bound problems, and points created when performing bound propagation). In the log above, we see that the nonlinear solver was only called 4 times, but 101 other solution candidates were analyzed as candidates for generating an upper bound. Also note that the globally optimal solution is found already in the root node, so all effort was effectively spent on certifying optimality. On some models finding the optimal solution is hard, and on some models the certification is the hard part, and you typically don't know which it is until you have solved the problem.
 
 The second example is a slightly larger nonconvex quadratic programming problem. The problem is immediately solved to a gap of less than 1%.
 
@@ -139,7 +139,7 @@ optimize(F,p,options);
 
 ## Nonconvex polynomial programming
 
-Polynomial programs are transformed to to bilinear programs. As an example, the variable \\(x^3y^2\\) will be replaced with the the variable \\(w\\) and the constraints \\(w = uv\\), \\(u = zx\\), \\(z = x^2\\), \\(v = y^2\\). This is done automatically if the global solver is called with a non-quadratic polynomial problem. With this transformation, standard bilinear envelopes can be used in the creation of the relaxations for computing lower bounds. Note though, the nonlinear solver will work with the original polynomial model, so the bilinearization is only used for the lower bound computations. The polynomial model is not disregarded in the relaxations either, but is exploited in bound propagation and envelope generation.
+Polynomial programs are transformed to bilinear programs. As an example, the variable \\(x^3y^2\\) will be replaced with the variable \\(w\\) and the constraints \\(w = uv\\), \\(u = zx\\), \\(z = x^2\\), \\(v = y^2\\). This is done automatically if the global solver is called with a non-quadratic polynomial problem. With this transformation, standard bilinear envelopes can be used in the creation of the relaxations for computing lower bounds. Note though, the nonlinear solver will work with the original polynomial model, so the bilinearization is only used for the lower bound computations. The polynomial model is not disregarded in the relaxations either, but is exploited in bound propagation and envelope generation.
 
 ````matlab
 sdpvar x y
@@ -283,9 +283,9 @@ optimize(F,trace(P),options);
 *         3% spent in upper heuristics (38 candidates tried)
 ````
 
-The solver easily derives that the diagonal elements of \\(P\\) have to be non-negative but no upper bounds were found on them in presolve, and it has failed to derive any kind of bounds on the non-diagonal elements. Nevertheless, in this particular case  [BMIBNB](/solver/bmibnb) manages to solve the problem, but lack of bounds can easily lead to failure to converge or even generate sensible lower bounds, so it is adviced to add explicit bounds to all variables, and to give serious thought into reasonable values.
+The solver easily derives that the diagonal elements of \\(P\\) have to be non-negative but no upper bounds were found on them in presolve, and it has failed to derive any kind of bounds on the non-diagonal elements. Nevertheless, in this particular case  [BMIBNB](/solver/bmibnb) manages to solve the problem, but lack of bounds can easily lead to failure to converge or even generate sensible lower bounds, so it is advised to add explicit bounds to all variables, and to give serious thought into reasonable values.
 
-Notice that we have some degree-of-freedom in how we model this problem. The Lyapunov function which is nonlinear in \\(K\\) and \\(P\\) can be partially linearized by applying a Schur complement. Hece, we can test to trade some reduced non-linearity against a larger semidefinite cone. For this particular example, it is not an improvement. The upper bound heuristics (nonlinear cutting planes) struggles to find a good solution, while the lower bound is pretty tight early on. More on how to tweak the cutting plane strategy for the upper bounds are found in the post [cutting plane strategy for the upper bound generation](/nonlinearglobalsdp).
+Notice that we have some degree-of-freedom in how we model this problem. The Lyapunov function which is nonlinear in \\(K\\) and \\(P\\) can be partially linearized by applying a Schur complement. Hence, we can test to trade some reduced non-linearity against a larger semidefinite cone. For this particular example, it is not an improvement. The upper bound heuristics (nonlinear cutting planes) struggles to find a good solution, while the lower bound is pretty tight early on. More on how to tweak the cutting plane strategy for the upper bounds are found in the post [cutting plane strategy for the upper bound generation](/nonlinearglobalsdp).
 
 ````matlab
 F = [P>=0, [-eye(2) - ((A+B*K)'*P+P*(A+B*K)) K';K 1] >= 0];
@@ -333,7 +333,7 @@ optimize(F,trace(P),options);
 
 Beware, the BMI solver is absolutely not this efficient in general, this was just a lucky case. 
 
-Let us solve a decay-rate maximization problem, also this a BMI problem. No feasible solution until after 12 nodes, and no lower bound available until the upper bound can be exploited to strenthen bounds on some of the unbounded variables (indicating that one should add artificial bounds, but we will improve the model instead).
+Let us solve a decay-rate maximization problem, also this a BMI problem. No feasible solution until after 12 nodes, and no lower bound available until the upper bound can be exploited to strengthen bounds on some of the unbounded variables (indicating that one should add artificial bounds, but we will improve the model instead).
 
 ````matlab
 yalmip('clear');
@@ -411,7 +411,7 @@ optimize(F,-t,options);
 *         2% spent in upper heuristics (17 candidates tried)
 ````
 
-For this problem, we can easily find more interesting cuts. The decay-rate BMI together with the constant trace implies \\(trace(A^TP+PA) \leq -2t\\). Adding this redundant cut intereestingly leads to a finite lower bound already in the root node, but branch & bound algorithms can be unpredictable in the path they take through the tree, and here it opens another node and ends up solving one extra node.
+For this problem, we can easily find more interesting cuts. The decay-rate BMI together with the constant trace implies \\(trace(A^TP+PA) \leq -2t\\). Adding this redundant cut interestingly leads to a finite lower bound already in the root node, but branch & bound algorithms can be unpredictable in the path they take through the tree, and here it opens another node and ends up solving one extra node.
 
 ````matlab
 F = [P>=0, trace(P)==1, A'*P+P*A <= -2*t*P];
@@ -473,7 +473,7 @@ optimize(F,-t,options);
 *         2% spent in upper heuristics (18 candidates tried)
 ````
 
-By adding valid cuts, the relaxations are possibly tighter, leading to better lower bounds. A problem however is that we add additional burden to the local nonlinear solver used for the upper bounds. The additional cuts are redundant for the local solver, and most likely detoriate the performance. To avoid this, cuts can be explicitly specified by using the command [cut](/command/cut)(/command/cut). Constraints defined using this command will only be used in the solution of relaxations, and omitted when the local solver is called. Does not seem to make any difference here though (note that the story might be slightly different in the case of semidefinite constraints, since the semidefinite constraints are used for generating cuts for the nonlinear solver to improve SDP feasibility. Hence, if there are more SDP constraints in the model, other cuts will be generated for the nonlinear solver, meaning redundant SDP constraints may influence the upper bound process!)
+By adding valid cuts, the relaxations are possibly tighter, leading to better lower bounds. A problem however is that we add additional burden to the local nonlinear solver used for the upper bounds. The additional cuts are redundant for the local solver, and most likely deteriorate the performance. To avoid this, cuts can be explicitly specified by using the command [cut](/command/cut)(/command/cut). Constraints defined using this command will only be used in the solution of relaxations, and omitted when the local solver is called. Does not seem to make any difference here though (note that the story might be slightly different in the case of semidefinite constraints, since the semidefinite constraints are used for generating cuts for the nonlinear solver to improve SDP feasibility. Hence, if there are more SDP constraints in the model, other cuts will be generated for the nonlinear solver, meaning redundant SDP constraints may influence the upper bound process!)
 
 ````matlab
 F = [P >=0 ,A'*P+P*A <= -2*t*P, t >= 0];
@@ -505,6 +505,6 @@ optimize(F,-t,options);
 *         2% spent in upper heuristics (18 candidates tried)
 ````
 
-Upper bounds re by default generated by the nonlinear cutting plane strategy. You can alternatively set the upper bound solver to [PENBMI/PENLAB](/solver/penbmi) which solves nonlinear SDP problems natively. Unfortunately though, these solvers are typically not robust enough to be used in the branch & bound scenario in [BMINB](/solver/bmibnb)
+Upper bounds are by default generated by the nonlinear cutting plane strategy. You can alternatively set the upper bound solver to [PENBMI/PENLAB](/solver/penbmi) which solves nonlinear SDP problems natively. Unfortunately though, these solvers are typically not robust enough to be used in the branch & bound scenario in [BMIBNB](/solver/bmibnb)
 
 Finally, we note that the particular quasi-convex decay-rate problem we have studied here really shouldn't be solved using a full-fledged global solver, but is much more efficiently addressed using a [bisection](/solver/bisection).

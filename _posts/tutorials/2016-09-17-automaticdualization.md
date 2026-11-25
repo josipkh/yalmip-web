@@ -39,7 +39,7 @@ F = [F, X(1,3)==9, Y(1,1)==X(2,2), sum(sum(X))+sum(sum(Y)) == 20]
 
 Although the model looks like a problem in standard primal form, YALMIP will fit it to a dual form problem, since this is the standard model for YALMIP. YALMIP will explicitly parametrize the variable \\(X\\) with 465 variables, \\(Y\\) with 6 variables, create two semidefinite constraints and introduce 3 equality constraints in the dual form representation, corresponding to  471 equality constraint, 2 semidefinite cones and 3 free variables in the primal form.  If we instead would have interpreted this directly in the stated primal form, we have 3 equality constraints, 2 semidefinite cones and no free variables, corresponding to a dual form with 3 variables and two semidefinite constraints. The computational effort is mainly affected by the number of variables in the dual form (equalities in primal) and the size of the semidefinite cones. Moreover, many solvers have robustness problems with free variables in the primal form (equalities in the dual form). Hence, in this case, this problem can probably be solved much more efficiently if we could use an alternative model.
 
-The command [dualize](/command/dualize) can be used to extract the primal form, and return the dual of this problem in YALMIPs preferred dual form (we never use this command in practice, see below where we show how to use an option in [sdpsettings](/command/sdpsettings) instead)
+The command [dualize](/command/dualize) can be used to extract the primal form, and return the dual of this problem in YALMIP's preferred dual form (we never use this command in practice, see below where we show how to use an option in [sdpsettings](/command/sdpsettings) instead)
 
 ````matlab
 [Fd,objd,primals] = dualize(F,obj);Fd
@@ -243,4 +243,4 @@ ans =
        problem: 0
 ````
 
-The drastic reduction in actual solution-time of the semidefinite program comes at a price. Removing the equality constraints and deriving a reduced basis with a smaller number of variables requires computation of a QR factorization of a matrix of dimension 1326 by 1276. More over, after solving the problem, another system of linear equations have to be solved in order to recover the original solution. The total saving in computation time is however still high enough to motivate the primalization.
+The drastic reduction in actual solution-time of the semidefinite program comes at a price. Removing the equality constraints and deriving a reduced basis with a smaller number of variables requires computation of a QR factorization of a matrix of dimension 1326 by 1276. Moreover, after solving the problem, another system of linear equations have to be solved in order to recover the original solution. The total saving in computation time is however still high enough to motivate the primalization.

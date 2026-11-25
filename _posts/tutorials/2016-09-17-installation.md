@@ -26,7 +26,7 @@ Remove any old version of YALMIP, unzip the downloaded zip-file  and **add the f
 ->/YALMIP-master/operators
 ````
 
-Of course, you do not have to call the directory YALMIP-master, that just happens to be the name of the zip that Github generates for the master branch..
+Of course, you do not have to call the directory YALMIP-master, that just happens to be the name of the zip that GitHub generates for the master branch.
 
 A lazy way to do this is `addpath(genpath(yalmiprootdirectory))`
 

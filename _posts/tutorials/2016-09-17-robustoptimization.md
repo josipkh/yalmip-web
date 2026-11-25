@@ -48,7 +48,7 @@ objective = -x;
 
 Obviously, the optimal maximal **x** is 0.5, since if **x** is larger, there exist a **w** such that the uncertain constraint is violated.
 
-To solve the problem, we call [optimize](/command/optimize). A robust counterpart will automatically be derived and solved (generally, linear constraints with polytopic uncertainty is dealt with using the enumeration approach referenced above, however, for simple box uncertainty as in this case, YALMIP explictly performs the maximization, leading to a more efficient worst-case model)
+To solve the problem, we call [optimize](/command/optimize). A robust counterpart will automatically be derived and solved (generally, linear constraints with polytopic uncertainty is dealt with using the enumeration approach referenced above, however, for simple box uncertainty as in this case, YALMIP explicitly performs the maximization, leading to a more efficient worst-case model)
 
 ````matlab
 sol = optimize(F + W,objective)
@@ -146,7 +146,7 @@ For more examples, check out the [LPV control example](/example/lpvstatefeedback
 
 ### Useful features
 
-In some cases, we only want to derive the robust counter-part, but not actually solve it. This can be accomplished with the command [robustify]
+In some cases, we only want to derive the robust counterpart, but not actually solve it. This can be accomplished with the command [robustify]
 
 ````matlab
 [Frobust,robust_objective] = robustify(F + W,objective);

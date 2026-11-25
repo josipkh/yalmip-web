@@ -20,7 +20,7 @@ F = [F, 0.1+0.5*sqrt(-1) >= p];        % Both parts constrained
 F = [F, s+p == 2+4*sqrt(-1)];          % Both parts constrained
 ````
 
-To see how complex-valued constraints can be used in a more advanced setting, we solve the covariance estimation problem from the [sedumi](/solver/sedumi) manual. The problem is to find a positive-definite Hermitian Toeplitz matrix **Z** such that the Frobenious norm of **P-Z** is minimized (**P** is a given complex matrix.)
+To see how complex-valued constraints can be used in a more advanced setting, we solve the covariance estimation problem from the [sedumi](/solver/sedumi) manual. The problem is to find a positive-definite Hermitian Toeplitz matrix **Z** such that the Frobenius norm of **P-Z** is minimized (**P** is a given complex matrix.)
 
 The matrix **P** is
 ````matlab
@@ -39,7 +39,7 @@ A complex Toeplitz matrix is not Hermitian, but we can make it Hermitian if we r
 Z = Z-diag(imag(diag(Z)))*sqrt(-1);
 ````
 
-Minimizing the Frobenious norm of **P-Z** can be cast as minimizing the Euclidean norm of the vectorized difference **P(:)-Z(:)**. By using a Schur complement, we see that this can be written as the following SDP.
+Minimizing the Frobenius norm of **P-Z** can be cast as minimizing the Euclidean norm of the vectorized difference **P(:)-Z(:)**. By using a Schur complement, we see that this can be written as the following SDP.
 
 ````matlab
 e = P(:)-Z(:)

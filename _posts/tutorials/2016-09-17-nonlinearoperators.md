@@ -7,7 +7,7 @@ excerpt: "Working with nonlinear operators in a structured and efficient fashion
 tags: [Linear programming representable, Second-order cone programming representable, Semidefinite programming representable, Integer programming representable, Exponential cone programming representable]
 ---
 
-Nonlinear functions and operators, such as [abs](/command/abs), [entropy](/command/entropy) or [sort](/command/sort), are equipped with various properties which allows YALMIP to, e.g., analyze the optimization problem with respect to convexity, select a suitable way to model the problem, or supply gradients and jacobians to nonlinear solvers. If the problem is convex and suitably structured, YALMIP can sometimes use a [graph representation](/tutorial/nonlinearoperatorsgraphs), while a severly nonlinear or nonconvex problem might require the introduction of [mixed-integer representations](/tutorial/nonlinearoperatorsmixedinteger) or a [callback approach](/tutorial/nonlinearoperatorscallback).
+Nonlinear functions and operators, such as [abs](/command/abs), [entropy](/command/entropy) or [sort](/command/sort), are equipped with various properties which allows YALMIP to, e.g., analyze the optimization problem with respect to convexity, select a suitable way to model the problem, or supply gradients and jacobians to nonlinear solvers. If the problem is convex and suitably structured, YALMIP can sometimes use a [graph representation](/tutorial/nonlinearoperatorsgraphs), while a severely nonlinear or nonconvex problem might require the introduction of [mixed-integer representations](/tutorial/nonlinearoperatorsmixedinteger) or a [callback approach](/tutorial/nonlinearoperatorscallback).
 
 ## Graph-based representations
 
@@ -27,10 +27,10 @@ Read more about [integer representable function](/tutorial/nonlinearoperatorsmix
 
 ## Callback-based representations
 
-A third way to model operators in YALMIP is by using callbacks. This is the way a modelling-layer normally works with nonlinear solvers. The modelling-layer creates a framework for computing function values and derivatives. Operators modelled this way in YALMIP can also be equipped with convexity information, and thus fit into YALMIPs convexity propagations, and for use in the built-in global solver [BMIBNB](/solver/bmibnb) they can have more information attached such as envelope approximators, bound generators, and inverse functions.
+A third way to model operators in YALMIP is by using callbacks. This is the way a modelling-layer normally works with nonlinear solvers. The modelling-layer creates a framework for computing function values and derivatives. Operators modelled this way in YALMIP can also be equipped with convexity information, and thus fit into YALMIP's convexity propagations, and for use in the built-in global solver [BMIBNB](/solver/bmibnb) they can have more information attached such as envelope approximators, bound generators, and inverse functions.
 
 Since they are based on callbacks, they can only be used with general purpose nonlinear solvers, such as [FMINCON](/solver/fmincon), [SNOPT](/solver/snopt) or [IPOPT](/solver/ipopt). 
 
-Most of MATLABs built-in nonlinear functions, such as [erf](/command/erf) and [sin](/command/sin)), are available as callback operators in YALMIP. There are also operators such as [exp](/command/exp) and [kullbackleibler](/command/kullbackleibler) which can be used both with graph representations in [exponential-cone programming](/tutorial/exponentialcone) and as callback operators in general nonlinear solvers.
+Most of MATLAB's built-in nonlinear functions, such as [erf](/command/erf) and [sin](/command/sin)), are available as callback operators in YALMIP. There are also operators such as [exp](/command/exp) and [kullbackleibler](/command/kullbackleibler) which can be used both with graph representations in [exponential-cone programming](/tutorial/exponentialcone) and as callback operators in general nonlinear solvers.
 
 Read more about [callback operators](/tutorial/nonlinearoperatorscallback).

@@ -41,7 +41,7 @@ ans =
 
 ````
 
-## Mosek
+## MOSEK
 
 With [MOSEK](/solver/mosek), only socp duals on [CONE](/command/cone) constraints are possible.
 

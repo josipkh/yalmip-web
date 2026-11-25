@@ -149,7 +149,7 @@ s = sdpvar(size(R,2),1);
 optimize([s == R*x],s'*s);
 ````
 
-The archetypical example is **sum(x)^2** which leads to a completely dense quadratic model of rank 1. Absolutely catastrophical for large problems (it will most likely be indefinite for vectors of length larger than 10 in floating-point numerics) and a waste of memory. The trivial improvement is
+The archetypical example is **sum(x)^2** which leads to a completely dense quadratic model of rank 1. Absolutely catastrophic for large problems (it will most likely be indefinite for vectors of length larger than 10 in floating-point numerics) and a waste of memory. The trivial improvement is
 
 ````matlab
 s = sdpvar(1);

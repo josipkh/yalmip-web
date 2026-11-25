@@ -15,11 +15,11 @@ published: false
 
 Stochastic programming, a little known feature available in development branches for over a decade. Almost getting ready to actually release.
 
-The framework is currently focused on chance constraints, i.e., constraints of the type \\( \text{Probability}(f(x) + g^T(x)w \leq 0) \geq 1-\gamma \\). In this constraint, \\(x\\) represent decision variables, \\(w\\) are uncertain varaibles with an associated statistical model, and \\(gamma\\) is called the risk parameter. Depending on the structure on \\(f(x)\\), \\(g(x)\\), the statistical model, and whether \\(gamma\\) is fixed or not, the complexity and derivation of the deterministic representation of the chance constraint ranges from trivial to completely intractable.
+The framework is currently focused on chance constraints, i.e., constraints of the type \\( \text{Probability}(f(x) + g^T(x)w \leq 0) \geq 1-\gamma \\). In this constraint, \\(x\\) represent decision variables, \\(w\\) are uncertain variables with an associated statistical model, and \\(gamma\\) is called the risk parameter. Depending on the structure on \\(f(x)\\), \\(g(x)\\), the statistical model, and whether \\(gamma\\) is fixed or not, the complexity and derivation of the deterministic representation of the chance constraint ranges from trivial to completely intractable.
 
 ## Defining variables
 
-The two driving principles in the setup of stochastic models is that random variables are introduced and manipulated like any other variables in YALMIP, and a strive for notational consistency with the Statistics and Machine learning Toolbox. Communicating properties of the variables are done via the [uncertain](/command/uncertain) command, thus making stochastic and deterministic worst-case models very similiar.
+The two driving principles in the setup of stochastic models is that random variables are introduced and manipulated like any other variables in YALMIP, and a strive for notational consistency with the Statistics and Machine learning Toolbox. Communicating properties of the variables are done via the [uncertain](/command/uncertain) command, thus making stochastic and deterministic worst-case models very similar.
 
 ### Scalar Gaussian variables
 
@@ -67,7 +67,7 @@ w_std = [1;5];
 Model = [uncertain(w,'mvnrnd', w_mean, diag(w_std.^2))];
 ````
 
-A special purpose distibution is **'mvnrndfactor'** which is defined through a square-root of the covariance instead. Hence, the following two models are equivalent
+A special purpose distribution is **'mvnrndfactor'** which is defined through a square-root of the covariance instead. Hence, the following two models are equivalent
 
 ````matlab
 w = sdpvar(2,1);
@@ -78,7 +78,7 @@ Model1 = [uncertain(w,'mvnrnd', w_mean, Covariance)];
 Model2 = [uncertain(w,'mvnrndfactor', w_mean, R)];
 ````
 
-In the examples so far, the mean, standard deviations, covariances and covariance factors have been constant. This is however not necessary, and we will later see models where some of these are decision variables, or uncertain variables, and the factor model turns out to be particularily useful in those cases motivating this special purpose parameterization. 
+In the examples so far, the mean, standard deviations, covariances and covariance factors have been constant. This is however not necessary, and we will later see models where some of these are decision variables, or uncertain variables, and the factor model turns out to be particularly useful in those cases motivating this special purpose parameterization. 
 
 ### Other standard distributions
 

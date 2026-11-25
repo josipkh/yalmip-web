@@ -10,13 +10,13 @@ sidebar:
 
 
 
-YALMIP has built-in support for definition, setup, and solution of bilevel programming problems. The code here concentrates on the [built-in solver for bilevel problems](/command/solvebilevel). You can of course set them up yourself, by manually deriving the KKT conditions and solving them using various techniques in YALMIP, or by using YALMIPs high-level [kkt](/command/kkt) operator, as illustrated in the [bilevel example](/example/bilevelprogrammingalternatives).
+YALMIP has built-in support for definition, setup, and solution of bilevel programming problems. The code here concentrates on the [built-in solver for bilevel problems](/command/solvebilevel). You can of course set them up yourself, by manually deriving the KKT conditions and solving them using various techniques in YALMIP, or by using YALMIP's high-level [kkt](/command/kkt) operator, as illustrated in the [bilevel example](/example/bilevelprogrammingalternatives).
 
 For an introduction to bilevel optimization, see [Bard 1999](/reference/bard1999).
 
 ### KKT conditions in bilevel programming
 
-The class of bilevel problems that can be adressed natively by YALMIP has to have the following leader-follower (outer-inner) structure
+The class of bilevel problems that can be addressed natively by YALMIP has to have the following leader-follower (outer-inner) structure
 
 $$
 \begin{aligned}
@@ -42,7 +42,7 @@ h-F_1x-F_2y & \geq 0\\
 \end{aligned}
 $$
 
-This is precisely what is done in the manually derived bilevel solution methods in [bilevel example](/example/bilevelprogrammingalternatives), but the possible benefit of using YALMIPs native support as we will do here is that this solver branches directly on the complementarity conditions, and thus avoids to introduce any numerically dangerous [big-M](/tutorial/bigmandconvexhulls) constants.
+This is precisely what is done in the manually derived bilevel solution methods in [bilevel example](/example/bilevelprogrammingalternatives), but the possible benefit of using YALMIP's native support as we will do here is that this solver branches directly on the complementarity conditions, and thus avoids to introduce any numerically dangerous [big-M](/tutorial/bigmandconvexhulls) constants.
 
 ### Bilevel linear and quadratic programming
 

@@ -48,7 +48,7 @@ UncertaintyModel = [norm(z-zc,1) <= r];
 optimize([UncertainConstraint,UncertaintyModel,uncertain(z)],-r)
 ````
 
-This model will fail, since YALMIP cannot find the intended uncertainty desciption here, as there is no constraint which only involves uncertain variables. Adding \\(r\\) and \\(z_c\\) to the list of uncertain variables does not make sense either, as they are not uncertain, but simply not decided yet.
+This model will fail, since YALMIP cannot find the intended uncertainty description here, as there is no constraint which only involves uncertain variables. Adding \\(r\\) and \\(z_c\\) to the list of uncertain variables does not make sense either, as they are not uncertain, but simply not decided yet.
 
 The way to model this setup is to think of a normalized uncertainty, and then write the uncertainty in terms of this normalized uncertainty. In our case, we can see the uncertainty as a scaled and translated uncertainty.
 

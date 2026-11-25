@@ -47,4 +47,4 @@ plot(Ball,[x y z],'y')
 
 ## Comments
 
-The command solves a series of optimization problems in order to find the maximum and minimum value of all variables, and use these values to construct a constraint defining the bounding box. Since the computation is based on repeated optimization (i.e., the bounding box is not computed analytically) it is assumed that the model is convex so that the global optima is found in every direction.
+The command solves a series of optimization problems in order to find the maximum and minimum value of all variables, and use these values to construct a constraint defining the bounding box. Since the computation is based on repeated optimization (i.e., the bounding box is not computed analytically) it is assumed that the model is convex so that the global optimum is found in every direction.

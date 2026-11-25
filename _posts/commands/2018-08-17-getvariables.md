@@ -18,7 +18,7 @@ k = getvariables(x)
 
 ## Examples
 
-[sdpvar](/command/sdpvar) variables are built-up from internal variable indicies (i.e., the only internal name and reference is an integer). 
+[sdpvar](/command/sdpvar) variables are built-up from internal variable indices (i.e., the only internal name and reference is an integer). 
 
 ````matlab
 yalmip('clear')
@@ -34,7 +34,7 @@ ans =
     2 3 4 5 6 7 
 ````
 
-Also nonlinear terms have internal indicies (and assosciated structures to explain how the term relates to other linear variables)
+Also nonlinear terms have internal indices (and associated structures to explain how the term relates to other linear variables)
 
 ````matlab
 z = x^2;
@@ -52,6 +52,6 @@ ans =
     1 8
 ````
 
-### Commnents
+### Comments
 
 In most situations you typically use [depends](/command/depends) which returns the index to the involved linear variables.

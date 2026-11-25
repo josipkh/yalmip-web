@@ -16,7 +16,7 @@ image:
 
 This example illustrates an application of the [robust optimization module](/tutorial/robustoptimization). The main focus of this example is uncertain semidefinite constraints.
 
-In addition to the robustification of linear constraints, introduced in the [robust MPC example](/example/robustmpc), YALMIP can also robustify second-order cone and semdefinite constraints bilinear in the decision variable and the uncertainty.
+In addition to the robustification of linear constraints, introduced in the [robust MPC example](/example/robustmpc), YALMIP can also robustify second-order cone and semidefinite constraints bilinear in the decision variable and the uncertainty.
 
 ### Robust control
 
@@ -115,7 +115,7 @@ A = Anomial;
 Anominal(1,3) = alpha;
 ````
 
-Unfortunately, this will fail, due to limitations in MATLABs overloading of assignment of user-defined classes. Instead, we have to use the following approach
+Unfortunately, this will fail, due to limitations in MATLAB's overloading of assignment of user-defined classes. Instead, we have to use the following approach
 
 ````matlab
 alpha = sdpvar(1);

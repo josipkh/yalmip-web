@@ -14,7 +14,7 @@ Sometimes you might see error messages from YALMIP screaming about NaNs (not a n
 You have NaNs in your constraints!. Please fix model
 ````
 
-or you are contructing an expression and see
+or you are constructing an expression and see
 
 ````
 Error using  +  (line 46)
@@ -56,7 +56,7 @@ y =
    NaN     0     0     0     0
 ````
 
-Obviously not creating the vector one would think!. The reason is the precedence behavior of **subsasgn** (which performs this operation) in MATLAB. Doubles have priority, hence, the right-hand-side is cast as a double when the assignment is performed. The code is thus equivalent to
+Obviously not creating the vector one would think! The reason is the precedence behavior of **subsasgn** (which performs this operation) in MATLAB. Doubles have priority, hence, the right-hand-side is cast as a double when the assignment is performed. The code is thus equivalent to
 
 ````matlab
 sdpvar x
@@ -88,7 +88,7 @@ y = double2sdpvar(zeros(1,5));
 y(5) = x;
 ````
 
-Another fix is to vectorize you computation, as these issues often arise when using some simple naive for-loop.
+Another fix is to vectorize your computation, as these issues often arise when using some simple naive for-loop.
 
 ### Bad data to begin with
 

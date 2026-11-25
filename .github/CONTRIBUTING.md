@@ -4,7 +4,7 @@ Having trouble working with the theme? Found a typo in the documentation? Intere
 
 Minimal Mistakes has been designed as a base for you to customize and fit your site's unique needs. Please keep this in mind when requesting features and/or submitting pull requests. If it's not something that most people will use, I probably won't consider it. When in doubt ask. 
 
-This goes for author sidebar links and "share button" additions -- I have no intention of merging in every possibly option, the essentials are there to get you started :smile:.
+This goes for author sidebar links and "share button" additions -- I have no intention of merging in every possible option, the essentials are there to get you started :smile:.
 
 ## Pull Requests
 

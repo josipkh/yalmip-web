@@ -28,7 +28,7 @@ permalink: /allcommands
 ### Constraints (manipulating)
 [boundingbox](/command/boundingbox), [chebyball](/command/chebyball), [check](/command/check),  [compilesos](/command/compilesos),[dilate](/command/dilate), [dual](/command/dual), [hull](/command/hull), [is](/command/is), [sosd](/command/sosd),[vertex](/command/vertex)
 
-### Auxilliary
+### Auxiliary
 [loadsdpafile](/command/loadsdpafile), [loadsedumidata](/command/loadsedumidata),[saveampl](/command/saveampl), [savecplexlp](/command/savecplexlp), [savesdpafile](/command/savesdpafile), [yalmiperror](/command/yalmiperror), [yalmiptest](/command/yalmiptest)
 
 ### Low-level and internal

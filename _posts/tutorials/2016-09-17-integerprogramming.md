@@ -9,7 +9,7 @@ sidebar:
 ---
 
 
-YALMIP supports several [mixed integer programming solvers](/#mixed-integer-conic-programming-solver), and also comes with a two built-in solvers for mixed-integer programming called [BNB](/solver/bnb) and [CUTSDP](/solver/cutsdp) (decribed in detail in [this post](/The-cutsdp-solver)).
+YALMIP supports several [mixed integer programming solvers](/#mixed-integer-conic-programming-solver), and also comes with a two built-in solvers for mixed-integer programming called [BNB](/solver/bnb) and [CUTSDP](/solver/cutsdp) (described in detail in [this post](/The-cutsdp-solver)).
 
 Besides explicit definition of integer (and binary) variables by the user, YALMIP implements a large amount of automatic modelling constructs which end up as [mixed-integer representations](/tutorial/nonlinearoperatorsmixedinteger).
 

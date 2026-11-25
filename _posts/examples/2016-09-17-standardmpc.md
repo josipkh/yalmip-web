@@ -58,7 +58,7 @@ optimize(constraints,objective);
 value(u{1})
 ````
 
-Setting up a problem like this every time we have a new initial state is a waste of computational effort. Almost all CPU time will be spent in YALMIPs overhead to define the model and convert the model to solver specific format, and not in the actual solution of the optimization problem.
+Setting up a problem like this every time we have a new initial state is a waste of computational effort. Almost all CPU time will be spent in YALMIP's overhead to define the model and convert the model to solver specific format, and not in the actual solution of the optimization problem.
 
 To avoid some of the over-head, we formulate the problem with the initial state as a decision variable.
 
@@ -76,7 +76,7 @@ for k = 1:N
 end
 ````
 
-We can now obtain a solution from an arbitrary initial state, by simply constraining the initial state. The benefit now is that we do not have to redefine the complete model everytime the initial state changes, but simply make a small addition to it. The overhead in YALMIP to convert to solver specific format remains though. Of course, the drawback is that there are some extra variables and constraints, but the computational impact of this is absolutely minor.
+We can now obtain a solution from an arbitrary initial state, by simply constraining the initial state. The benefit now is that we do not have to redefine the complete model every time the initial state changes, but simply make a small addition to it. The overhead in YALMIP to convert to solver specific format remains though. Of course, the drawback is that there are some extra variables and constraints, but the computational impact of this is absolutely minor.
 
 ````matlab
 optimize([constraints, x0 == [3;1]],objective);
@@ -92,7 +92,7 @@ ops = sdpsettings('verbose',2);
 controller = optimizer(constraints,objective,ops,x0,u{1});
 ````
 
-We can now simulate the system using very simple code (notice that an optimization problem still is solved every time the controller object is referenced, but most of YALMIPs overhead is avoided)
+We can now simulate the system using very simple code (notice that an optimization problem still is solved every time the controller object is referenced, but most of YALMIP's overhead is avoided)
 
 ````matlab
 x = [3;1]

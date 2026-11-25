@@ -30,7 +30,7 @@ xoptimal = Saturation([1;3])
 
 ### Improved syntax
 
-If you have used [optimizer](/command/optimizer) before, you might notice that we now call the object with parantheses instead of curly brackets. Parantheses is the new standard, but curly brackets still apply.
+If you have used [optimizer](/command/optimizer) before, you might notice that we now call the object with parentheses instead of curly brackets. Parentheses is the new standard, but curly brackets still apply.
 
 ````matlab
 xoptimal = Saturation{[1;3]}
@@ -41,7 +41,7 @@ Instead of vectorizing the parameters into one vector, we can, as before, create
 Saturation = optimizer([-a <= x <= a], Objective,sdpsettings('solver','mosek'), { a , b }, x)
 ````
 
-To be backwards compatible and be somewhat lax in common confusions between the old format (first line below) and prefered new (two last), the solution can be obtained with
+To be backwards compatible and be somewhat lax in common confusions between the old format (first line below) and preferred new (two last), the solution can be obtained with
 
 ````matlab
 xoptimal = Saturation{ {1,3} }
@@ -153,7 +153,7 @@ Solver = saturation(1,3,'nosolve');
 xoptimal = Solver([]);
 ````
 
-This feature can be useful in some cases where we concatentate several models, and then solve a problem on the intersection of all constraints.
+This feature can be useful in some cases where we concatenate several models, and then solve a problem on the intersection of all constraints.
 
 Another new feature is the possibility to concatenate [optimizer](/command/optimizer) objects. This is in particular useful when performing partial instantiations. All constraints in the concatenated models are appended, and the new objective is the average of all involved objectives, i.e, they are summed up.
 

@@ -459,7 +459,7 @@ commands:
         url: /command/sosd
       - title: "vertex"
         url: /command/vertex         
-  - title: Auxilliary
+  - title: Auxiliary
     children:
       - title: "loadsdpafile"
         url: /command/loadsdpafile

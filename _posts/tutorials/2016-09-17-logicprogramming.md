@@ -18,7 +18,7 @@ YALMIP does a lot of modelling for you behind the scenes, but sometimes it is im
 Some simple rules and strategies when deriving models for complex logic and combinatorials models:
 1. Try to represent things with disjoint events of the kind "exactly one of these things occur" with a binary variable associated to each event.
 2. Try to arrive at "binary variable implies set of constraints"
-3. Introduce intermediate auxilliary variables to keep things clean
+3. Introduce intermediate auxiliary variables to keep things clean
 4. Decompose the logic using intermediate variables to connect parts
 
 In other words, a large sparse simple model is much better than a compact complex model. What we try to emphasize in the examples is that **most models can be derived using exactly the same strategy and a few very basic building blocks**. Many of the models can be simplified and reduced, but those steps are typically done just as efficiently inside the solver during pre-solve.
@@ -122,7 +122,7 @@ This is a general strategy throughout. If you enter complex expressions, introdu
 
 ### If a then  \\(f(x) < 0\\)
 
-Strict inequalities are impossible in practice (unless \\(f(x)\\) is quantized such as only involving integer variables). Hence, you have to use a margin and hope that this in combination with solver tolerances leads to a solution which actually satisfies the constraints (solutions claimed feasible and optimal can easily be infeasible and are only guaranteed to satisfy solver tolerance and termination critera)
+Strict inequalities are impossible in practice (unless \\(f(x)\\) is quantized such as only involving integer variables). Hence, you have to use a margin and hope that this in combination with solver tolerances leads to a solution which actually satisfies the constraints (solutions claimed feasible and optimal can easily be infeasible and are only guaranteed to satisfy solver tolerance and termination criteria)
 
 $$
 f(x) \leq -\epsilon  + M(1-a)
@@ -136,7 +136,7 @@ $$
 f(x) \leq M(1-a),-f(x)\leq Ma
 $$
 
-To create more easily generalizable models and learn a common core strategy, it is adviced to think of this as two disjoint cases each associated with a set of constraints. 
+To create more easily generalizable models and learn a common core strategy, it is advised to think of this as two disjoint cases each associated with a set of constraints. 
 
 $$
 \begin{align}
@@ -197,7 +197,7 @@ $$
 f(x)\geq -Ma
 $$
 
-Note that we use a non-strict inequality. If behaviour around 0 is important, a margin will have to be used as discussed before, ant is up to you and your goal to decide if the margin is positive or negative,i.e. towards whih side you prefer incorrect activations to happen.
+Note that we use a non-strict inequality. If behaviour around 0 is important, a margin will have to be used as discussed before, ant is up to you and your goal to decide if the margin is positive or negative,i.e. towards which side you prefer incorrect activations to happen.
 
 
 ### If \\( f(x) = 0\\) then a
@@ -240,7 +240,7 @@ $$
 
 ### If \\( f(x) \leq 0\\) then a else not a
 
-Now it starts paying of thinking in terms of auxilliary variables and disjoint cases. This is 
+Now it starts paying of thinking in terms of auxiliary variables and disjoint cases. This is 
 
 $$
 \begin{align}
@@ -340,7 +340,7 @@ $$
 
 ### y = abx, a and b binary, x non-binary
 
-When there are repeated binary variables, the procedure cab simply be repeated with intermediate variables. Start by introducing a new variable and  model for **c = ab**  and then use model for **y = cx**. 
+When there are repeated binary variables, the procedure can simply be repeated with intermediate variables. Start by introducing a new variable and  model for **c = ab**  and then use model for **y = cx**. 
 
 The idea and model generalizes to arbitrary polynomials of binary variables, simply introduce intermediate variables to keep it simple.
 
@@ -390,7 +390,7 @@ z_1 + z_2 &= 1
 \end{align}
 $$
 
-Remember that absolute value is convex, so you only use a MILP representation if absoutely needed.
+Remember that absolute value is convex, so you only use a MILP representation if absolutely needed.
 
 ### y = max(x)
 
@@ -446,7 +446,7 @@ In theory introduce integer \\(y\\) and \\(x \leq y < x+1\\). In practice strict
 
 ### y = fix(x)
 
-Round towards zero means we we want floor for positive arguements and ceil for negative arguments. We can write this as 
+Round towards zero means we want floor for positive arguments and ceil for negative arguments. We can write this as 
 
 $$
 \begin{align}
@@ -545,7 +545,7 @@ $$
 
 ### y = f(x), x scalar integer
 
-For an arbitrary function defined over a bounded integer set (here for simple notation assumed to be \\(1\\leq x \leq M\\), we simply see it as as the disjoint logic model
+For an arbitrary function defined over a bounded integer set (here for simple notation assumed to be \\(1\\leq x \leq M\\), we simply see it as the disjoint logic model
 
 $$
 \begin{align}
@@ -587,7 +587,7 @@ Note that [sos2](/command/sos2) constructions are more efficient though.
 
 ### y = piecewise quadratic function
 
-Following the picewise affine model, it is trivial to extend to the quadratic case **if** \\(A_ix\leq b_i\\) then \\(y = \frac{1}{2}x^TQ_ix + c_i^Tx+d_i\\). However, one should be slightly more clever, as the standard approach would introduce equalities involving quadratic expressions, which is nonconvex. 
+Following the piecewise affine model, it is trivial to extend to the quadratic case **if** \\(A_ix\leq b_i\\) then \\(y = \frac{1}{2}x^TQ_ix + c_i^Tx+d_i\\). However, one should be slightly more clever, as the standard approach would introduce equalities involving quadratic expressions, which is nonconvex. 
 
 Define \\(N\\) vectors \\(p_i\\) with length equal to \\(x\\), and  define \\(y\\) as  \\( \sum_{i = 1}^N \frac{1}{2}p_i^TQ_ip_i + c_i^Tp_i+d_i z_i\\) where
 
@@ -611,7 +611,7 @@ $$
 ## Other modeling strategies
 {: #other }
 
-As you should have seen by know, the approach to model is almost always the same. Use the basic building blocks of implications, with auxilliary variables, and try to flatten the logic as much as possible
+As you should have seen by now, the approach to model is almost always the same. Use the basic building blocks of implications, with auxiliary variables, and try to flatten the logic as much as possible
 
 ### Counters and loops
 
@@ -640,7 +640,7 @@ end
 ````
 Neither will work, as you cannot use if-operators, and the second cases simply says z=0.
 
-To model the counter, or accumulated value, you introduce an auxiiliary variable for each case and model its logic.
+To model the counter, or accumulated value, you introduce an auxiliary variable for each case and model its logic.
 
 $$
 \begin{align}

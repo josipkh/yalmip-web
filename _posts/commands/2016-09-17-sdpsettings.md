@@ -127,7 +127,7 @@ ans =
 
 ### solver
 
-In the code above, we told YALMIP to use the solver Mosek. The possible values to give to the field **solver** can be found in the [solver documentation](/allsolvers). If the solver isn't found, an [error code](/command/yalmiperror) will be returned in the output structure. To let YALMIP select the solver, use the default solver tag ''. If you give a comma-separated list of solvers such as **'dsdp,csdp,sdpa'**, YALMIP will select based on this preference. If you add a wildcard in the end **'dsdp,csdp,sdpa,*'**, YALMIP will select another solver if none of the solvers in the list were found. 
+In the code above, we told YALMIP to use the solver MOSEK. The possible values to give to the field **solver** can be found in the [solver documentation](/allsolvers). If the solver isn't found, an [error code](/command/yalmiperror) will be returned in the output structure. To let YALMIP select the solver, use the default solver tag ''. If you give a comma-separated list of solvers such as **'dsdp,csdp,sdpa'**, YALMIP will select based on this preference. If you add a wildcard in the end **'dsdp,csdp,sdpa,*'**, YALMIP will select another solver if none of the solvers in the list were found. 
 
 ### verbose
 

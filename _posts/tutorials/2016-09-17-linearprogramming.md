@@ -44,7 +44,7 @@ u = sdpvar(1,25);
 v = sdpvar(1,25);
 ````
 
-The classification constraints are easily defined by exploiting MATLABs and YALMIPs ability to add scalars and vectors
+The classification constraints are easily defined by exploiting MATLAB's and YALMIP's ability to add scalars and vectors
 
 ````matlab
 Constraints = [a'*greens+b >= 1-u, a'*blues+b <= -(1-v), u >= 0, v >= 0]
@@ -65,7 +65,7 @@ At last, we are ready to solve the problem
 optimize(Constraints,Objective)
 ````
 
-The values of the optimal \\(a\\) and \\(b\\) are obtained using [value](/command/value). To better illustrate the results, we use YALMIPs ability to [plot](/command/plot) constraint sets to lazily display the separating hyperplane.
+The values of the optimal \\(a\\) and \\(b\\) are obtained using [value](/command/value). To better illustrate the results, we use YALMIP's ability to [plot](/command/plot) constraint sets to lazily display the separating hyperplane.
 
 ````matlab
 x = sdpvar(2,1);

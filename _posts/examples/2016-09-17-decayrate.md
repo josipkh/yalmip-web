@@ -152,7 +152,7 @@ optimize(F,-t,sdpsettings('solver','penlab'));
 
 ### Global SDP solver
 
-If [PENBMI](/solver/penbmi) or [PENLAB](/solver/penlab) is installed, the decay-rate problem should easily be solved, in theory. In practice, the solver may encounter numerical problems. An alternative then is to run YALMIPs internal global SDP solver [BMIBNB](/solver/bmibnb). This is a bit of an over-kill, but it is convenient, compared to writing the script above, and is actually just as fast (note that [PENBMI](/solver/penbmi) or [PENLAB](/solver/penlab) very often suffer from numerical problems and have many bugs and are not actively maintained, so with high probability, you ill not be ale to use this setup)
+If [PENBMI](/solver/penbmi) or [PENLAB](/solver/penlab) is installed, the decay-rate problem should easily be solved, in theory. In practice, the solver may encounter numerical problems. An alternative then is to run YALMIP's internal global SDP solver [BMIBNB](/solver/bmibnb). This is a bit of an over-kill, but it is convenient, compared to writing the script above, and is actually just as fast (note that [PENBMI](/solver/penbmi) or [PENLAB](/solver/penlab) very often suffer from numerical problems and have many bugs and are not actively maintained, so with high probability, you will not be able to use this setup)
 
 ````matlab
 F = [P>=0, A'*P+P*A <= -2*t*P, trace(P)== 1, 100 >= t >= 0];

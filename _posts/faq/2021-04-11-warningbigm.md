@@ -73,7 +73,7 @@ Model = [implies(d,   -1 <= x <= 1),
 optimize(Model)
 ````
 
-Obviously **x** is bounded in any feasible solution, and we see what appears to be explicit bounds on **x**. However this is only because we manually presolve the model when we look at it. We immediately solve the MILP and see that there are two cases and that the union of these two possibilities gives us trivial bounds. This is not possible when YALMIP searches for the bounds in the model as the bounds effectively are hidden inside a MILP representation, and that MILP representation cannot be constructed until bounds are available. A chicken-and-egg problem. To be able to detect these bounds a full-fledged high-level MILP preolve routine would have to be engaged.
+Obviously **x** is bounded in any feasible solution, and we see what appears to be explicit bounds on **x**. However this is only because we manually presolve the model when we look at it. We immediately solve the MILP and see that there are two cases and that the union of these two possibilities gives us trivial bounds. This is not possible when YALMIP searches for the bounds in the model as the bounds effectively are hidden inside a MILP representation, and that MILP representation cannot be constructed until bounds are available. A chicken-and-egg problem. To be able to detect these bounds a full-fledged high-level MILP presolve routine would have to be engaged.
 
 A correct model is thus
 

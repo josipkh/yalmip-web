@@ -13,7 +13,7 @@ In most of the examples related to logic programming and nonconvex models, the i
 
 ## Big-M reformulations
 
-Big-M reformulations are used to convert a logic or nonconvex constraint to a set of constraints describing the same feasible set, using auxillary binary variables and additional logic constraints.
+Big-M reformulations are used to convert a logic or nonconvex constraint to a set of constraints describing the same feasible set, using auxiliary binary variables and additional logic constraints.
 
 As an example, consider the logic constraint **if y == 1 then x==0** where **y** is binary and **x** is a continuous variable, which in YALMIP is written as **implies(y,x==0)**. A big-M reformulation of this constraint would be
 
@@ -92,7 +92,7 @@ plot(A4*x<=b4)
 
 The relaxation is far from a good approximation of the true feasible set, indicating that a mixed integer solver may have problems solving this problem efficiently, since it typically relies on strong relaxations.
 
-A better model is obtained by using a more reasonable big-M constant (In this example, it is hard to use a good constant since the data is randomly generated. In practice, realistic bounds which is needed for YALMIPs derivation typically follow from model insight (When YALMIP performs the modeling internally, a considerable amount of preprocessing is performed in order to derive good bounds, based on supplied bounds on the involved variables)
+A better model is obtained by using a more reasonable big-M constant (In this example, it is hard to use a good constant since the data is randomly generated. In practice, realistic bounds which is needed for YALMIP's derivation typically follow from model insight (When YALMIP performs the modeling internally, a considerable amount of preprocessing is performed in order to derive good bounds, based on supplied bounds on the involved variables)
 
 ````matlab
 M1 = 50;

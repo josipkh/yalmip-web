@@ -63,7 +63,7 @@ By using more outputs from [solvemp](/command/solvemp), it is possible to simpli
 [sol,diagnostics,aux,Valuefunction,OptimalSolution] = solvemp(F,obj,[],x);
 ````
 
-The function now returns solutions using YALMIPs [nonlinear operator framework](/tutorial/nonlinearoperators). To retrieve the numerical solution for a particular parameter value, simply use [assign](/command/assign) and [value](/command/value) in standard fashion.
+The function now returns solutions using YALMIP's [nonlinear operator framework](/tutorial/nonlinearoperators). To retrieve the numerical solution for a particular parameter value, simply use [assign](/command/assign) and [value](/command/value) in standard fashion.
 
 ````matlab
 assign(x,[0.1;0.2]);
@@ -135,7 +135,7 @@ plot(OptimalSolution)
 
 YALMIP extends the multiparametric solvers in [MPT](/solver/mpt) by adding support for binary variables in the parametric problems.
 
-We will now solve this problem under the additional constraints that the input is quantized in steps of 1/3. This can easily be modelled in YALMIP using [ismember](/command/ismember). Note that this nonconvex operator introduces a lot of binary variables, and the MPC problem is most likely solved more efficiently using a [dynamic programming approach](/example/explicitmpc). Since the input at every time instant can take 7 different values, it means a brute-force approach to computing the multi-parametric solution will in the worst-case require solution of \\(7^N\\) multi-parametric programs. Unfortunately, that is lmost what happens here, so we reduce the horizon to 3.
+We will now solve this problem under the additional constraints that the input is quantized in steps of 1/3. This can easily be modelled in YALMIP using [ismember](/command/ismember). Note that this nonconvex operator introduces a lot of binary variables, and the MPC problem is most likely solved more efficiently using a [dynamic programming approach](/example/explicitmpc). Since the input at every time instant can take 7 different values, it means a brute-force approach to computing the multi-parametric solution will in the worst-case require solution of \\(7^N\\) multi-parametric programs. Unfortunately, that is almost what happens here, so we reduce the horizon to 3.
 
 ````matlab
 N = 3;

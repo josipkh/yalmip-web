@@ -27,7 +27,7 @@ plot(P);
 
 ![costs_LPVMPC]({{ site.url }}/images/mptyalmip1.png){: .center-image }
 
-The same plot can be achived by pure YALMIP code
+The same plot can be achieved by pure YALMIP code
 
 ````matlab
 x = sdpvar(2,1);
@@ -50,7 +50,7 @@ Note that the algorithm to plot the sets are completely different in YALMIP and 
 
 ### Minkowski difference
 
-Minkowski difference, or polytope substraction, is overloaded on polytope objects in [MPT](/solver/mpt). We define a new polytope, and subtract it from our first polytope
+Minkowski difference, or polytope subtraction, is overloaded on polytope objects in [MPT](/solver/mpt). We define a new polytope, and subtract it from our first polytope
 
 ````matlab
 E = randn(10,2);
@@ -61,7 +61,7 @@ plot(P-S,'y');
 
 ![costs_LPVMPC]({{ site.url }}/images/mptyalmip2.png){: .center-image }
 
-To accomplish the same using only YALMIP, we have to go back to the defintion of the Minkowski difference. The Minkowski difference \\(P-S\\) is defined as all \\(x\\) such that \\(x+w\\) is in \\(P\\) for all \\(w\\) in \\(S\\). This can be interpreted as a robust optimization problem.
+To accomplish the same using only YALMIP, we have to go back to the definition of the Minkowski difference. The Minkowski difference \\(P-S\\) is defined as all \\(x\\) such that \\(x+w\\) is in \\(P\\) for all \\(w\\) in \\(S\\). This can be interpreted as a robust optimization problem.
 
 ````matlab
 w = sdpvar(2,1);

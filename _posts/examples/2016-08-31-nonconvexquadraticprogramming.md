@@ -113,7 +113,7 @@ value(x'*Q*x)
 
 ### Comparison with Global solver
 
-Although semidefinite relaxations have had a huge impact on the field of nonconvex optimization, it must not be forgotten that standard global optimization often is competitive, at least when a solution is required and a lower bound not is sufficient. Switching to YALMIPs built-in global solver [BMIBNB](/solver/bmibnb) is trivial
+Although semidefinite relaxations have had a huge impact on the field of nonconvex optimization, it must not be forgotten that standard global optimization often is competitive, at least when a solution is required and a lower bound not is sufficient. Switching to YALMIP's built-in global solver [BMIBNB](/solver/bmibnb) is trivial
 
 ````
 ops = sdpsettings('solver','bmibnb')
@@ -155,7 +155,7 @@ ops= sdpsettings('solver','kktqp');
 sol = optimize([-1 <= x <= 1],x'*Q*x,ops);
 ````
 
-We repeat the experiments above, now with the strengthened second-order relaxation, and the KKT based MILP approach. From the figure, it is clear the the last method is the most efficient for this problem family, and the solver used.
+We repeat the experiments above, now with the strengthened second-order relaxation, and the KKT based MILP approach. From the figure, it is clear the last method is the most efficient for this problem family, and the solver used.
 
 ![CPU times]({{ site.url }}/images/nonconvexcomparetimes2.png){: .center-image }
 

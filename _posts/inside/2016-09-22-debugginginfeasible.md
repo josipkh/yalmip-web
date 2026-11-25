@@ -95,7 +95,7 @@ check(Constraints)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 ````
 
-If this would have shown all constraints feasible, you would have found a bug in both YALMIP and all solvers you've tested. Most likely it will show that some constrant is infeasible, as in this case where contraint 5 is violated.
+If this would have shown all constraints feasible, you would have found a bug in both YALMIP and all solvers you've tested. Most likely it will show that some constraint is infeasible, as in this case where constraint 5 is violated.
 
 So, constraint 5? With the set of constraints listed above, it might be a nightmare to figure out which constraint this actually is. This is where [tagging constraints](/taggingconstraints) might help. Add some nice tags in your code that defines the constraints, and it might look like this instead
 
@@ -180,7 +180,7 @@ ans =
 The fifth constraints combined in the two sets of constraints appear to be problematic, as we cannot find a solution where they both are feasible.
 
 
-### 7. Bisect you constraints
+### 7. Bisect your constraints
 
 Remove constraints, and see when it becomes feasible. In the end, this might be your only option to hone in on the problems in your code. You can do this either by commenting out parts in your code, or by indexing from the full set.
 

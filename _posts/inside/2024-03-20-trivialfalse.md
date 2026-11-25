@@ -25,7 +25,7 @@ Inequality constraint evaluated to trivial false (no decision variable in constr
  
 ````
 
-Without thinking of it, you have added a constraint of the type 1<=0 or 0==1 etc. To debug this, unless you immediately know what line caused it, simply comment out code untill it disappears, and then you know where it is
+Without thinking of it, you have added a constraint of the type 1<=0 or 0==1 etc. To debug this, unless you immediately know what line caused it, simply comment out code until it disappears, and then you know where it is
 
 This still fails, hence that line is not the problem
 

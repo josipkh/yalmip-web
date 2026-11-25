@@ -17,7 +17,7 @@ A spatial branch & bound algorithm for nonconvex programming typically relies on
 
 1. In an open node, a [local nonlinear solver](/tags/#nonlinear-programming-solver) is applied and may find a feasible (and hopefully locally optimal) solution. This gives an upper bound on the achievable objective (possibly infinite if the solver fails to find a feasible solution). The local solver for this step is specified with the option **'bmibnb.uppersolver'**  in [BMIBNB](/solver/bmibnb).
 
-2. As a second step a convex relaxation of the model in the node is derived (using the methods described below), and the resulting convex optimization problem is solved (typically a linear program, or if the original problem is a nonconvex semidefinite program, a semidefinite program, or perhaps a convex quadratic or second-order cone problem, depending on what convex relaxation we have). This gives a lower bound on the achievable objective in this box. The lower bound solver is specified using the options **'bmibnb.lowersolver'** in [BMIBNB](/solver/bmibnb). If the lower bound is larger than the best upper bound so far, the node can be discarded as the optimal solution cannnot be located in this box.
+2. As a second step a convex relaxation of the model in the node is derived (using the methods described below), and the resulting convex optimization problem is solved (typically a linear program, or if the original problem is a nonconvex semidefinite program, a semidefinite program, or perhaps a convex quadratic or second-order cone problem, depending on what convex relaxation we have). This gives a lower bound on the achievable objective in this box. The lower bound solver is specified using the options **'bmibnb.lowersolver'** in [BMIBNB](/solver/bmibnb). If the lower bound is larger than the best upper bound so far, the node can be discarded as the optimal solution cannot be located in this box.
 
 3. Given these lower and upper bounds, if the node was not discarded a standard branch-and-bound logic is used to select a branch variable, a branch point, divide current box into two new boxes and create the two resulting nodes, branch, prune and navigate among the remaining nodes in a tree of open nodes using (2).
 
@@ -86,7 +86,7 @@ Note that the machinery requires bounds on the variables. [BMIBNB](/solver/bmibn
 
 ### Linear relaxation for multivariate polynomial problems
 
-Multivariate polynomial problems are treated by simply converting them to bilinear representions by introducing additional variables and constraints. As an example, the term \\(x^2y^2\\) can be written as \\(uv\\) with the new bilinear equality constraints \\(u=x^2\\) and \\(v=y^2\\). Once a bilinear model has been obtained, standard bilinear relaxations can be used on the three monomials \\(x^2, y^2, uv\\). 
+Multivariate polynomial problems are treated by simply converting them to bilinear representations by introducing additional variables and constraints. As an example, the term \\(x^2y^2\\) can be written as \\(uv\\) with the new bilinear equality constraints \\(u=x^2\\) and \\(v=y^2\\). Once a bilinear model has been obtained, standard bilinear relaxations can be used on the three monomials \\(x^2, y^2, uv\\). 
 
 ### Linear relaxation for univariate higher degree monomials
 
@@ -169,7 +169,7 @@ hold on;plot(t,sin(t));
 
 ![Quadratic hull]({{ site.url }}/images/hullsin.png){: .center-image }
 
-### Exploiting YALMIPs internal framework
+### Exploiting YALMIP's internal framework
 
 In the code above, we generated the envelope approximations manually, but it is possible to hook into the inner workings of YALMIP to study these sets. 
 
@@ -202,7 +202,7 @@ plot(x,x.^2)
 
 ### The importance of bounds
 
-Finally, a comment on bounds. As a general rule of thumb, you have to bound all variables used in nonlinear exressions when you use the global solver [BMIBNB](/solver/bmibnb) which is based on envelope approximations. However, YALMIP performs various bound strengthening schemes to improve bounds and find implied bounds, and the same code is used in the [envelope](/command/envelope) code used above. In some cases, YALMIP can derive bounds, without any initial bounds being specified at all. As an example, the following problem is easily solved with nicely behaved envelopes despite supplying no bounds
+Finally, a comment on bounds. As a general rule of thumb, you have to bound all variables used in nonlinear expressions when you use the global solver [BMIBNB](/solver/bmibnb) which is based on envelope approximations. However, YALMIP performs various bound strengthening schemes to improve bounds and find implied bounds, and the same code is used in the [envelope](/command/envelope) code used above. In some cases, YALMIP can derive bounds, without any initial bounds being specified at all. As an example, the following problem is easily solved with nicely behaved envelopes despite supplying no bounds
 
 ````matlab
 sdpvar x

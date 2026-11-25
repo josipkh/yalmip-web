@@ -219,7 +219,7 @@ end
 
 ### Dynamic programming with PWA systems
 
-As mentioned above, the difference between the value function from a parametric LP and a parametric LP with binary variables is that convexity of the value function no longer is guaranteed. In practice, this means that (additional) binary variables are required when the the value function is used in an optimization problem. This is done automatically in YALMIP through the [nonlinear operator framework], but it is extremely important to realize that the value function from a binary problem is much more complex than the one resulting from a standard parametric problem. Nevertheless, working with the objects is easy, as the following example illustrates. In this case, we solve the dynamic programming problem for our PWA system
+As mentioned above, the difference between the value function from a parametric LP and a parametric LP with binary variables is that convexity of the value function no longer is guaranteed. In practice, this means that (additional) binary variables are required when the value function is used in an optimization problem. This is done automatically in YALMIP through the [nonlinear operator framework], but it is extremely important to realize that the value function from a binary problem is much more complex than the one resulting from a standard parametric problem. Nevertheless, working with the objects is easy, as the following example illustrates. In this case, we solve the dynamic programming problem for our PWA system
 
 ````matlab
 yalmip('clear')
@@ -334,7 +334,7 @@ The first thing that might be a bit unusual to the advanced user is the piecewis
 Valuefunction = pwf(sol,x,'convex')
 ````
 
-The pwf command will recognize the MPT solution structure and create a PWA function based on the fields **Pn**, **Bi** and **Ci**. The dedicated [nonlinear operator] is implemented in the file pwa_yalmip.m . The [nonlinear operator] will exploit the fact that the PWA function is convex and implement an efficient epi-graph representation. In case the PWA function is used in a nonconvex fashion (i.e. YALMIPs automatic convexity propagation fails), a MILP implementation is also available.
+The pwf command will recognize the MPT solution structure and create a PWA function based on the fields **Pn**, **Bi** and **Ci**. The dedicated [nonlinear operator] is implemented in the file pwa_yalmip.m . The [nonlinear operator] will exploit the fact that the PWA function is convex and implement an efficient epi-graph representation. In case the PWA function is used in a nonconvex fashion (i.e. YALMIP's automatic convexity propagation fails), a MILP implementation is also available.
 
 If the field **Ai** is non-empty (solution obtained from a multi-parametric QP), a corresponding PWQ function is created (pwq_yalmip.m).
 

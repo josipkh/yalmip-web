@@ -36,7 +36,7 @@ Essentially all numerical solvers interfaced in YALMIP work with infeasible meth
 
 ## What to do then?
 
-So you really want a strict solution, but you only have strict constraints to work with. The first thing you should do is to really confirm that you need strict solutions. If you still need this, a simple approah is to simply skip this in the modelling phase, and just check that the solution satisfies your strictness condition. 
+So you really want a strict solution, but you only have strict constraints to work with. The first thing you should do is to really confirm that you need strict solutions. If you still need this, a simple approach is to simply skip this in the modelling phase, and just check that the solution satisfies your strictness condition. 
 
 If this does not hold, you have to force the solver to stay away from your forbidden region. What this means is that you add margins in your constraints, scalar or semidefinite depending on the set you are working with.
 
@@ -52,4 +52,4 @@ A (maybe not so) clever reformulation might be to introduce a new variable \\(t\
 
 ## But it is an integer variable!
 
-Writing \\(x > 0\\) for an integer variable \\(x\\) is just an awkvard way of saying \\(x \geq 1\\).
+Writing \\(x > 0\\) for an integer variable \\(x\\) is just an awkward way of saying \\(x \geq 1\\).

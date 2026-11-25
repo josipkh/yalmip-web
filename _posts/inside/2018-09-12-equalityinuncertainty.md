@@ -16,7 +16,7 @@ Trying to develop [robust optimization](/tutorial/robustoptimization) models wit
  
  - understand the difference between **an equality constraint ==** and an **assignment =**
   
- - understand the difference between a **decison variable** and a **policy or decision rule**.
+ - understand the difference between a **decision variable** and a **policy or decision rule**.
 
 ### How to buy a horse
 
@@ -81,7 +81,7 @@ b = s0 + s1*p;
 Model = [0 <= a <= 200, 0 <= b <= 200, t0+s0 == 0, t1+s1 == 1, 50 <= p <= 190, uncertain(p)]
 ````
 
-We explictly derived the condition necessary on the policy parameters for it to be correct. This can be done automatically by exploiting the fact that an equality involving uncertainties make no sense. The following model will work equivalently
+We explicitly derived the condition necessary on the policy parameters for it to be correct. This can be done automatically by exploiting the fact that an equality involving uncertainties make no sense. The following model will work equivalently
 
 ````matlab
 sdpvar p t0 t1 s0 s1
@@ -129,7 +129,7 @@ Model = [uncertain([s1 s2 s3 s4 s5 s6 s7 s8 s9]),
         0 <= [u1 u2 u3 u4 u5 u6 u7 u8]]
 Cost = w1+w2+w3+w4+w5+w6+w7+w8+w9+w10        
 ````
-Let us untangle all the mistakes. First, we have written the dynamical update of the stock in a way that hides the simple update law. It looks like all variables are coupled by a large number of equality constraints, but that's not true. The stock is completely and uniquely goverened by a linear time-invariant dynamical system with states \\(w_i\\) and external inputs \\(u_i\\) and \\(s_i\\). Secondly, the future stock is not a decision variable, it is an expression built from the initial stock, the sequence of sales, and the sequence of restocking order (which is the only decision variable). Hence, a first step would be create the predicted future states using the corresponding assignments
+Let us untangle all the mistakes. First, we have written the dynamical update of the stock in a way that hides the simple update law. It looks like all variables are coupled by a large number of equality constraints, but that's not true. The stock is completely and uniquely governed by a linear time-invariant dynamical system with states \\(w_i\\) and external inputs \\(u_i\\) and \\(s_i\\). Secondly, the future stock is not a decision variable, it is an expression built from the initial stock, the sequence of sales, and the sequence of restocking order (which is the only decision variable). Hence, a first step would be create the predicted future states using the corresponding assignments
 
 ````matlab
 sdpvar s1 s2 s3 s4 s5 s6 s7 s8 s9 s10
@@ -298,7 +298,7 @@ ans =
    19660
 ````
 
-Nope. Taking todays sale into account is sufficient in this scenario. At this point though, it shoulds be evident that one should vectorize the code. We do that, but go back to our simple policy.
+Nope. Taking today's sale into account is sufficient in this scenario. At this point though, it should be evident that one should vectorize the code. We do that, but go back to our simple policy.
 
 ````matlab
 s = sdpvar(1,10);

@@ -79,7 +79,7 @@ Important to realize is that this model is hard from two different aspects. To b
 
 ### The even harder but hopefully better way
 
-As we learn in [if-else statements](/example/modellingif), models where a piecewise quadratic function is used in the objective can be improved upon by removing the quadratic equalities from the equalitities and lift them into the objective. The trick to do so is to assign a local copy of the decision variable to each region. Using this strategy here leads to
+As we learn in [if-else statements](/example/modellingif), models where a piecewise quadratic function is used in the objective can be improved upon by removing the quadratic equalities from the equalities and lift them into the objective. The trick to do so is to assign a local copy of the decision variable to each region. Using this strategy here leads to
 
 ````matlab
 sdpvar x1 x2 x3
@@ -92,7 +92,7 @@ f = x1^2 + (-4*region(2)+4*x2) + (-28*region(3)+16*x3 - 1.5*x3^2);
 optimize(Model, -f)
 ````
 
-In this form, we have an MIQP, possibly with nonconvex objective, meaning we are opening up for using [CPLEX](/solver/cplex). Had the piecewise affine functions been non-increasing, the quadratic function would have been concave, and the resulting model here would have had a convex objective, i.e. we would have had a convex MIQP which typically is easier to handle as branching only has to be performed in the combinatorial space, and not in the continuous space. There are more solvers available for this model class too, such as [MOSEK](/solver/mosek). Note though, if we had this convex case, we should really not have modelled the objective using using disjunctions, but written the convex piecewise quadratic function using a convex epigraph representation, leading us to a convex second-order cone program.
+In this form, we have an MIQP, possibly with nonconvex objective, meaning we are opening up for using [CPLEX](/solver/cplex). Had the piecewise affine functions been non-increasing, the quadratic function would have been concave, and the resulting model here would have had a convex objective, i.e. we would have had a convex MIQP which typically is easier to handle as branching only has to be performed in the combinatorial space, and not in the continuous space. There are more solvers available for this model class too, such as [MOSEK](/solver/mosek). Note though, if we had this convex case, we should really not have modelled the objective using disjunctions, but written the convex piecewise quadratic function using a convex epigraph representation, leading us to a convex second-order cone program.
 
 ### Getting lazy
 

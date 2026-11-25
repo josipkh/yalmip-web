@@ -10,7 +10,7 @@ sidebar:
 
 YALMIP really does not care if your general nonlinear program is convex or not. In the general case it will just be a nonlinear model and any [nonlinear solver](/tafs#nonlinear-programming-solver) is used. If it happens to be convex, the solver might perform better, but that is not something YALMIP can influence. 
 
-However, general nonlinear  models are not all the same in practice. There are nice convex models, and nasty nonconvex models, and everything in between from YALMIPs perspective.
+However, general nonlinear  models are not all the same in practice. There are nice convex models, and nasty nonconvex models, and everything in between from YALMIP's perspective.
 
 
 ## Considerations in nonlinear models
@@ -51,7 +51,7 @@ A completely equivalent problem with much better properties in a general nonline
 
 
 
-## Afraid of nnoconvex models?
+## Afraid of nonconvex models?
 
 By default, YALMIP allows nonconvex problems to be formulated. However, if you want to make sure that no nonconvex problems slips by, you can specify this. If we switch the sign on the objective a non-convex model is obtained, and YALMIP detects this.
 

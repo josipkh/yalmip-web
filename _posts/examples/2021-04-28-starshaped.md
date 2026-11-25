@@ -49,7 +49,7 @@ Note that we have generated the coordinates so that they represent a closed curv
 
 The feasible set inside the star can be represented as the union of 7 polytopes. Hence, a general approach to representing this set is to describe these polytopes, and then use logic programming and binary variables to represent the union as illustrated in [the big-M tutorial](/tutorial/bigmandconvexhulls). However, star-convex polygons can be represented much more conveniently using [sos2](/command/sos2) constructs.
 
-To derive a [sos2](/command/sos2) representation, we first focus on representing the border of the polygon. With given vertices \\(v_i = (x_i,y_i)\\), every point on the border of the star can be written as a linear combination of two adjacent vertices. This can be written as \\(V\lambda\\) where where \\(V\\) are the vertices stacked in columns and \\(\lambda\\) is a non-negative vector with at most two adjacent non-zero elements summing up to \\( 1\\). This is the classical application of [sos2](/command/sos2), and precisely the same model YALMIP uses for linear interpolation in [interp1](/command/interp1) which essentially is what we are doing here.
+To derive a [sos2](/command/sos2) representation, we first focus on representing the border of the polygon. With given vertices \\(v_i = (x_i,y_i)\\), every point on the border of the star can be written as a linear combination of two adjacent vertices. This can be written as \\(V\lambda\\) where \\(V\\) are the vertices stacked in columns and \\(\lambda\\) is a non-negative vector with at most two adjacent non-zero elements summing up to \\( 1\\). This is the classical application of [sos2](/command/sos2), and precisely the same model YALMIP uses for linear interpolation in [interp1](/command/interp1) which essentially is what we are doing here.
 
 Assuming we work with coordinates \\(x\\) and \\(y\\) as decision variables in our model, and we want to say that \\((x,y)\\) is on the border, we arrive at the model
 
@@ -70,7 +70,7 @@ plot(Model,[x;y],[],[],sdpsettings('plot.shade',.1))
 
 ![Star convex hull]({{ site.url }}/images/starshaped2.png){: .center-image }
 
-This is not due to an incorrect model, but simply a limitation of the plot command. When you plot a set, it performs ray-shooting to find points on the boundary, and then draws the convex hull of these points (the only way to draw non-convex sets in YALMIP is to explicitly model mixed-integer models, as YALMIP then will perform enumeration of all combinatorial combinations of binry variables and draw each set individually to depict the union)
+This is not due to an incorrect model, but simply a limitation of the plot command. When you plot a set, it performs ray-shooting to find points on the boundary, and then draws the convex hull of these points (the only way to draw non-convex sets in YALMIP is to explicitly model mixed-integer models, as YALMIP then will perform enumeration of all combinatorial combinations of binary variables and draw each set individually to depict the union)
 
 To make sure we actually have modelled the border of the star, let us solve a simple problem where we find the point closest to a point outside.
 

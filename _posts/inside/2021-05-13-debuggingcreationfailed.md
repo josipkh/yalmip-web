@@ -20,7 +20,7 @@ x = sdpvar(2,1);
 optimize([norm(x,1) <= 1], norm(A*x - y,1))
 ````
 
-If we change the constraints slightly the model becomes nonconvex, but YALMIP will not complain as it just changes the modeling approach and derives a [mixed-integer linear programming repesentation](/tutorial/nonlinearoperatorsmixedinteger) of the nonconvex constraint instead.
+If we change the constraints slightly the model becomes nonconvex, but YALMIP will not complain as it just changes the modeling approach and derives a [mixed-integer linear programming representation](/tutorial/nonlinearoperatorsmixedinteger) of the nonconvex constraint instead.
 
 ````matlab
 optimize([0.1 <= norm(x,1) <= 1], norm(A*x - y,1))
